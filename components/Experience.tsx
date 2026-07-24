@@ -1,76 +1,24 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { Monitor, Users, Shield, Star, Lock, Trophy, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { profile } from '@/data/profile';
 
-function MonitorIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 20, height: 20, flexShrink: 0 }} aria-hidden="true">
-      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-      <path d="M8 21h8M12 17v4" />
-    </svg>
-  );
-}
-
-function UsersIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 20, height: 20, flexShrink: 0 }} aria-hidden="true">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  );
-}
-
-function ShieldIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 20, height: 20, flexShrink: 0 }} aria-hidden="true">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    </svg>
-  );
-}
-
-function StarIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 20, height: 20, flexShrink: 0 }} aria-hidden="true">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  );
-}
-
-function LockIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 20, height: 20, flexShrink: 0 }} aria-hidden="true">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-    </svg>
-  );
+function ArrowIcon() {
+  return <ArrowRight size={10} style={{ flexShrink: 0, marginTop: 5 }} />;
 }
 
 function TrophyIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 20, height: 20, flexShrink: 0 }}>
-      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-      <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-    </svg>
-  );
-}
-
-function ArrowIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 10, height: 10, flexShrink: 0, marginTop: 5 }}>
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  );
+  return <Trophy size={20} style={{ flexShrink: 0 }} />;
 }
 
 const certIcons: Record<string, React.FC> = {
-  monitor: MonitorIcon,
-  users: UsersIcon,
-  shield: ShieldIcon,
-  star: StarIcon,
-  lock: LockIcon,
+  monitor: () => <Monitor size={20} />,
+  users: () => <Users size={20} />,
+  shield: () => <Shield size={20} />,
+  star: () => <Star size={20} />,
+  lock: () => <Lock size={20} />,
 };
 
 export default function Experience() {
@@ -115,7 +63,7 @@ export default function Experience() {
         <div>
           <div className="reveal" style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: 10,
+            fontSize: 12,
             letterSpacing: '2px',
             textTransform: 'uppercase',
             color: 'var(--primary)',
@@ -174,7 +122,7 @@ export default function Experience() {
                 {/* Date */}
                 <span style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 10,
+                  fontSize: 12,
                   letterSpacing: '0.5px',
                   color: 'var(--primary)',
                   display: 'block',
@@ -185,7 +133,7 @@ export default function Experience() {
 
                 {/* Title */}
                 <h3 style={{
-                  fontSize: 15,
+                  fontSize: 16,
                   fontWeight: 600,
                   color: 'var(--text)',
                   marginBottom: 2,
@@ -196,7 +144,7 @@ export default function Experience() {
 
                 {/* Organization */}
                 <p style={{
-                  fontSize: 12,
+                  fontSize: 13,
                   color: 'var(--text-muted)',
                   marginBottom: 10,
                   fontFamily: 'var(--font-mono)',
@@ -217,7 +165,7 @@ export default function Experience() {
                     <li key={j} style={{
                       display: 'flex',
                       gap: 8,
-                      fontSize: 12.5,
+                      fontSize: 13.5,
                       color: 'var(--text-secondary)',
                       lineHeight: 1.6,
                     }}>
@@ -230,17 +178,17 @@ export default function Experience() {
                 </ul>
 
                 {/* Tech tags */}
-                {(exp as any).tech && (exp as any).tech.length > 0 && (
+                {exp.tech && exp.tech.length > 0 && (
                   <div style={{
                     display: 'flex',
                     flexWrap: 'wrap',
                     gap: 6,
                     marginTop: 12,
                   }}>
-                    {(exp as any).tech.map((tech: string, j: number) => (
+                    {exp.tech.map((tech: string, j: number) => (
                       <span key={j} style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: 9,
+                        fontSize: 10,
                         padding: '3px 10px',
                         borderRadius: 100,
                         background: 'var(--primary-dim)',
@@ -262,7 +210,7 @@ export default function Experience() {
         <div>
           <div className="reveal" style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: 10,
+            fontSize: 12,
             letterSpacing: '2px',
             textTransform: 'uppercase',
             color: 'var(--primary)',
@@ -278,7 +226,7 @@ export default function Experience() {
           {/* Certification cards */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {profile.certifications.map((cert, i) => {
-              const Icon = certIcons[cert.icon] || ShieldIcon;
+              const Icon = certIcons[cert.icon] || (() => <Shield size={20} />);
               return (
                 <div
                   key={i}
@@ -322,7 +270,7 @@ export default function Experience() {
                   </div>
                   <div style={{ minWidth: 0 }}>
                     <p style={{
-                      fontSize: 12.5,
+                      fontSize: 13.5,
                       fontWeight: 500,
                       color: 'var(--text)',
                       lineHeight: 1.4,
@@ -331,7 +279,7 @@ export default function Experience() {
                       {t(`cert.${i}.title`)}
                     </p>
                     <p style={{
-                      fontSize: 11,
+                      fontSize: 12,
                       color: 'var(--text-muted)',
                       fontFamily: 'var(--font-mono)',
                     }}>
@@ -348,7 +296,7 @@ export default function Experience() {
             <>
               <div className="reveal" style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 10,
+                fontSize: 12,
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
                 color: 'var(--primary)',
@@ -402,7 +350,7 @@ export default function Experience() {
                     </div>
                     <div style={{ minWidth: 0 }}>
                       <h4 style={{
-                        fontSize: 13,
+                        fontSize: 14,
                         fontWeight: 600,
                         color: 'var(--text)',
                         marginBottom: 4,
@@ -411,17 +359,17 @@ export default function Experience() {
                         {t(`achieve.${i}.title`)}
                       </h4>
                       {ach.subtitle && (
-                        <p style={{
-                          fontSize: 11.5,
-                          color: 'var(--primary)',
-                          fontFamily: 'var(--font-mono)',
-                          marginBottom: 6,
+                          <p style={{
+                            fontSize: 12.5,
+                            color: 'var(--primary)',
+                            fontFamily: 'var(--font-mono)',
+                            marginBottom: 6,
                         }}>
                           {t(`achieve.${i}.sub`)}
                         </p>
                       )}
                       <p style={{
-                        fontSize: 12,
+                        fontSize: 13,
                         color: 'var(--text-secondary)',
                         lineHeight: 1.6,
                         marginBottom: 8,
@@ -429,10 +377,10 @@ export default function Experience() {
                         {t(`achieve.${i}.desc`)}
                       </p>
                       <span style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: 10,
-                        color: 'var(--text-muted)',
-                        letterSpacing: '0.5px',
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: 11,
+                          color: 'var(--text-muted)',
+                          letterSpacing: '0.5px',
                       }}>
                         {ach.year}
                       </span>

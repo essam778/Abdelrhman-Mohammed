@@ -234,7 +234,7 @@ section {
   align-items: center;
   gap: 14px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--primary);
@@ -254,7 +254,7 @@ section {
 
 /* Section title */
 .section-title {
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(36px, 5.5vw, 60px);
   font-weight: 800;
   letter-spacing: -2px;
   line-height: 1.05;
@@ -262,7 +262,7 @@ section {
 }
 .section-sub {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
   margin-bottom: 40px;
 }
@@ -276,7 +276,7 @@ section {
   background: var(--gradient-1);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
   border: none;
@@ -296,7 +296,7 @@ section {
   background: transparent;
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
   border: 1px solid var(--border-hover);
@@ -429,6 +429,6 @@ section {
     padding: 12px 16px !important;
   }
   .terminal-body span {
-    font-size: 10px !important;
+    font-size: 11px !important;
   }
 }

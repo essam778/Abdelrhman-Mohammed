@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -69,7 +70,7 @@ export default function Navbar() {
           className="nav-logo"
           aria-label="Go to top - Abdulrahman Mohamed Portfolio"
           onClick={(e) => { e.preventDefault(); lazyScroll('#hero'); }}
-          style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 500, display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}
+          style={{ fontFamily: 'var(--font-mono)', fontSize: 15, fontWeight: 500, display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}
         >
           <span style={{ color: 'var(--text-muted)', fontWeight: 300 }}>&lt;</span>
           <span style={{ background: 'var(--gradient-1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 700 }}>{t('hero.name.first')}</span>
@@ -88,7 +89,7 @@ export default function Navbar() {
               }}
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 11,
+                fontSize: 12,
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase',
                 color: 'var(--text-muted)',
@@ -103,7 +104,7 @@ export default function Navbar() {
         <div className="nav-controls" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div className="nav-badge" style={{
             display: 'flex', alignItems: 'center', gap: 8,
-            fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '1.5px',
+            fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '1.5px',
             textTransform: 'uppercase', color: 'var(--primary)',
             padding: '6px 14px', border: '1px solid rgba(0,240,255,0.2)',
             borderRadius: 100,
@@ -129,15 +130,7 @@ export default function Navbar() {
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
           >
-            {theme === 'dark' ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 16, height: 16 }} aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 16, height: 16 }} aria-hidden="true">
-                <circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-              </svg>
-            )}
+            {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
           </button>
 
           <button
@@ -148,7 +141,7 @@ export default function Navbar() {
               height: 36, borderRadius: 8, padding: '0 10px',
               border: '1px solid var(--border)', background: 'transparent',
               color: 'var(--text-secondary)', cursor: 'pointer',
-              fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600,
+              fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'all 0.2s',
             }}
@@ -175,13 +168,7 @@ export default function Navbar() {
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 18, height: 18 }} aria-hidden="true">
-              {menuOpen ? (
-                <path d="M18 6L6 18M6 6l12 12" />
-              ) : (
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              )}
-            </svg>
+            {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
@@ -236,9 +223,7 @@ export default function Navbar() {
           onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
           onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text)'; }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 22, height: 22 }}>
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
+          <X size={22} />
         </button>
 
         {links.map((link, i) => (
@@ -255,7 +240,7 @@ export default function Navbar() {
             }}
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: 'clamp(20px, 5vw, 28px)',
+              fontSize: 'clamp(22px, 5vw, 30px)',
               letterSpacing: '3px',
               textTransform: 'uppercase',
               color: 'var(--text)',

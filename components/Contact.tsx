@@ -1,5 +1,6 @@
 'use client';
 
+import { Phone, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { profile } from '@/data/profile';
 
@@ -37,11 +38,7 @@ export default function Contact() {
     {
       label: 'Phone',
       href: `tel:${profile.phone}`,
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 16, height: 16 }}>
-          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-        </svg>
-      ),
+      icon: <Phone size={16} />,
     },
   ];
 
@@ -53,11 +50,11 @@ export default function Contact() {
           <span>{t('contact.label')}</span>
         </div>
 
-        <h2 className="section-title" style={{ fontSize: 'clamp(32px, 5vw, 48px)' }}>
+        <h2 className="section-title" style={{ fontSize: 'clamp(36px, 5.5vw, 52px)' }}>
           <span dangerouslySetInnerHTML={{ __html: t('contact.title') }} />
         </h2>
 
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: 16, color: 'var(--text-secondary)', lineHeight: 1.8, marginTop: 16, transitionDelay: '.1s', maxWidth: 500, margin: '16px auto 0' }}>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: 17, color: 'var(--text-secondary)', lineHeight: 1.8, marginTop: 16, transitionDelay: '.1s', maxWidth: 500, margin: '16px auto 0' }}>
           {t('contact.sub')}
         </p>
 
@@ -89,7 +86,7 @@ export default function Contact() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: 12,
-              fontSize: 'clamp(18px, 3vw, 28px)',
+              fontSize: 'clamp(20px, 3vw, 30px)',
               fontWeight: 800,
               fontFamily: 'var(--font-mono)',
               color: 'var(--text)',
@@ -105,10 +102,7 @@ export default function Contact() {
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.background = 'var(--primary-dim)'; e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.transform = 'translateY(0)'; }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 24, height: 24 }}>
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
+            <Mail size={24} />
             {profile.email}
           </a>
 
@@ -124,7 +118,7 @@ export default function Contact() {
                 className="social-link"
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                  fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '1px',
+                  fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '1px',
                   textTransform: 'uppercase', color: 'var(--text-secondary)',
                   textDecoration: 'none', padding: '12px 24px',
                   border: '1px solid transparent', borderRadius: 100,

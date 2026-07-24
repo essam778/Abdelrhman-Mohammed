@@ -15,22 +15,16 @@ const LanguageContext = createContext<LanguageContextValue>({
   t: (key: string) => key,
 });
 
-function getInitialLang(): Lang {
-  try {
-    const saved = localStorage.getItem('lang') as Lang | null;
-    if (saved === 'en' || saved === 'ar') return saved;
-  } catch {}
-  return 'en';
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>('en');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setLang(getInitialLang());
-  }, []);
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('lang') as Lang | null;
+        if (saved === 'en' || saved === 'ar') return saved;
+      } catch {}
+    }
+    return 'en';
+  });
 
   useEffect(() => {
     document.documentElement.lang = lang;

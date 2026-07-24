@@ -14,22 +14,16 @@ const ThemeContext = createContext<ThemeContextValue>({
   toggleTheme: () => {},
 });
 
-function getInitialTheme(): Theme {
-  try {
-    const saved = localStorage.getItem('theme') as Theme | null;
-    if (saved === 'dark' || saved === 'light') return saved;
-  } catch {}
-  return 'dark';
-}
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setTheme(getInitialTheme());
-  }, []);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('theme') as Theme | null;
+        if (saved === 'dark' || saved === 'light') return saved;
+      } catch {}
+    }
+    return 'dark';
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

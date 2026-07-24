@@ -29,6 +29,20 @@ export const profile = {
 
   experience: [
     {
+      date: 'Jul 2026 – Present',
+      title: 'AI Facilitator',
+      org: 'Samsung Innovation Campus · Part-time',
+      details: ['Facilitating AI education and project-based learning for students as part of the Samsung Innovation Campus program.'],
+      tech: ['AI', 'ML', 'Teaching', 'Python'],
+    },
+    {
+      date: 'Jul 2026 – Present',
+      title: 'Physical Coding Instructor',
+      org: 'iSchool · Part-time',
+      details: ['Teaching physical computing and coding fundamentals to students in Banha, Egypt.'],
+      tech: ['Coding', 'STEM', 'Teaching'],
+    },
+    {
       date: 'Mar 2026 – Present',
       title: 'Freelance Coach – Data Science & Freelancing',
       org: 'Elharefa — Digital Egypt Pioneers Initiative (DEPI), MCIT',
@@ -88,7 +102,7 @@ export const profile = {
       subtitle: 'Computer Vision & Deep Learning',
       description: 'Graduation Project 2026. Developed an end-to-end AI system that translates Arabic Sign Language into text using MediaPipe Holistic and LSTM networks. Built a custom dataset, implemented preprocessing, sequence normalization, data augmentation, and achieved robust real-time gesture recognition integrated into a mobile application.',
       tags: ['Python', 'MediaPipe', 'LSTM', 'Computer Vision', 'Mobile App'],
-      image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&q=80',
+      image: '/images/signbridge.jpg',
     },
     {
       num: 'PROJECT_02',
@@ -104,7 +118,7 @@ export const profile = {
       subtitle: 'RAG & NLP',
       description: 'Built a voice-based medical assistant chatbot using a Retrieval-Augmented Generation (RAG) pipeline to deliver accurate, context-aware medical responses. Integrated speech-to-text and text-to-speech for natural voice interaction, with document retrieval and LLM-based response generation grounded in trusted medical sources.',
       tags: ['RAG', 'NLP', 'LLM', 'Voice AI', 'Python'],
-      image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80',
+      image: '/images/voice-assistant.jpg',
     },
     {
       num: 'PROJECT_04',
@@ -112,7 +126,7 @@ export const profile = {
       subtitle: 'Power BI Dashboard',
       description: 'Interactive 3-page Power BI dashboard with KPIs, trend analysis, and pricing insights using Power Query ETL and custom DAX measures.',
       tags: ['Power BI', 'DAX', 'ETL', 'Analytics'],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+      image: '/images/udemy.jpg',
     },
   ],
 
@@ -164,6 +178,12 @@ export const profile = {
   ],
 
   achievements: [
+    {
+      title: 'B.Sc. in Computer & Communication Engineering',
+      subtitle: 'Benha University — Graduated 2026',
+      description: 'Successfully completed a B.Sc. in Computer and Communication Engineering from Benha University, with coursework spanning Python, C/C++, MATLAB, ML, and embedded systems.',
+      year: '2026',
+    },
     {
       title: '2nd Place – Industry Innovators Hackathon v2',
       subtitle: 'AI Leads the Future of Industry',

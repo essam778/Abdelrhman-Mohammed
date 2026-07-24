@@ -1,8 +1,17 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { MapPin, GraduationCap, Mail, Globe, Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { profile } from '@/data/profile';
+
+const detailIcons: Record<string, React.ReactNode> = {
+  location: <MapPin size={16} />,
+  university: <GraduationCap size={16} />,
+  email: <Mail size={16} />,
+  languages: <Globe size={16} />,
+  focus: <Target size={16} />,
+};
 
 function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -42,13 +51,20 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-function useDetails(t: (key: string) => string) {
+interface Detail {
+  key: string;
+  labelKey: string;
+  valueKey?: string;
+  value?: string;
+}
+
+function useDetails(): Detail[] {
   return [
-    { key: 'location', icon: '📍', labelKey: 'about.detail.location', valueKey: 'about.detail.locationVal' },
-    { key: 'university', icon: '🎓', labelKey: 'about.detail.university', valueKey: 'about.detail.universityVal' },
-    { key: 'email', icon: '✉️', labelKey: 'about.detail.email', value: profile.email },
-    { key: 'languages', icon: '🌐', labelKey: 'about.detail.languages', valueKey: 'about.detail.languagesVal' },
-    { key: 'focus', icon: '🎯', labelKey: 'about.detail.focus', valueKey: 'about.detail.focusVal' },
+    { key: 'location', labelKey: 'about.detail.location', valueKey: 'about.detail.locationVal' },
+    { key: 'university', labelKey: 'about.detail.university', valueKey: 'about.detail.universityVal' },
+    { key: 'email', labelKey: 'about.detail.email', value: profile.email },
+    { key: 'languages', labelKey: 'about.detail.languages', valueKey: 'about.detail.languagesVal' },
+    { key: 'focus', labelKey: 'about.detail.focus', valueKey: 'about.detail.focusVal' },
   ];
 }
 
@@ -82,7 +98,7 @@ const aboutPyLines = [
 
 export default function About() {
   const { t } = useLanguage();
-  const details = useDetails(t);
+  const details = useDetails();
 
   return (
     <section id="about" style={{ overflow: 'hidden' }}>
@@ -91,7 +107,7 @@ export default function About() {
         className="reveal"
         style={{
           display: 'flex', alignItems: 'center', gap: 14,
-          fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '2px',
+          fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '2px',
           textTransform: 'uppercase', color: 'var(--primary)',
           marginBottom: 48,
         }}
@@ -120,7 +136,7 @@ export default function About() {
         {/* ===== Left Column ===== */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           <h2 style={{
-            fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800,
+            fontSize: 'clamp(30px, 4.5vw, 48px)', fontWeight: 800,
             lineHeight: 1.1, letterSpacing: -2, color: 'var(--text)',
             margin: 0,
           }}>
@@ -129,19 +145,19 @@ export default function About() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <p style={{
-              fontFamily: 'var(--font-sans)', fontSize: 15,
+              fontFamily: 'var(--font-sans)', fontSize: 16,
               lineHeight: 1.8, color: 'var(--text-secondary)', margin: 0,
             }}>
               {t('about.p1')}
             </p>
             <p style={{
-              fontFamily: 'var(--font-sans)', fontSize: 15,
+              fontFamily: 'var(--font-sans)', fontSize: 16,
               lineHeight: 1.8, color: 'var(--text-secondary)', margin: 0,
             }}>
               {t('about.p2')}
             </p>
             <p style={{
-              fontFamily: 'var(--font-sans)', fontSize: 15,
+              fontFamily: 'var(--font-sans)', fontSize: 16,
               lineHeight: 1.8, color: 'var(--text-secondary)', margin: 0,
             }}>
               {t('about.p3')}
@@ -176,7 +192,8 @@ export default function About() {
                 }}
               >
                 <span style={{
-                  fontSize: 28, fontWeight: 800,
+fontSize: 32,
+                      fontWeight: 800,
                   fontFamily: 'var(--font-mono)',
                   background: 'var(--gradient-1)',
                   WebkitBackgroundClip: 'text',
@@ -186,7 +203,7 @@ export default function About() {
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </span>
                 <span style={{
-                  fontSize: 11, fontFamily: 'var(--font-mono)',
+                  fontSize: 12, fontFamily: 'var(--font-mono)',
                   letterSpacing: '0.5px', color: 'var(--text-muted)',
                   textTransform: 'uppercase',
                 }}>
@@ -207,7 +224,7 @@ export default function About() {
               background: 'var(--border)',
             }}
           >
-            {details.map((d, i) => (
+            {details.map((d) => (
               <div
                 key={d.key}
                 style={{
@@ -218,20 +235,20 @@ export default function About() {
                   background: 'var(--surface)',
                 }}
               >
-                <span style={{ fontSize: 16, flexShrink: 0 }}>{d.icon}</span>
+                <span style={{ flexShrink: 0, display: 'flex', color: 'var(--primary)' }}>{detailIcons[d.key]}</span>
                 <span style={{
-                  fontFamily: 'var(--font-mono)', fontSize: 12,
+                  fontFamily: 'var(--font-mono)', fontSize: 13,
                   color: 'var(--text-muted)', textTransform: 'uppercase',
                   letterSpacing: '0.5px', minWidth: 80,
                 }}>
                   {t(d.labelKey)}
                 </span>
                 <span style={{
-                  fontFamily: 'var(--font-sans)', fontSize: 14,
+                  fontFamily: 'var(--font-sans)', fontSize: 15,
                   color: 'var(--text)', fontWeight: 500,
                   flex: 1, textAlign: 'right',
                 }}>
-                  {(d as any).valueKey ? t((d as any).valueKey) : (d as any).value}
+                  {d.valueKey ? t(d.valueKey) : d.value}
                 </span>
               </div>
             ))}
@@ -247,7 +264,7 @@ export default function About() {
             border: '1px solid var(--border)',
             background: 'var(--surface)',
             fontFamily: 'var(--font-mono)',
-            fontSize: 13,
+            fontSize: 14,
             lineHeight: 1.8,
             position: 'sticky',
             top: 100,
@@ -276,7 +293,7 @@ export default function About() {
             }} />
             <span style={{
               flex: 1, textAlign: 'center',
-              fontSize: 12, color: 'var(--text-muted)',
+              fontSize: 13, color: 'var(--text-muted)',
               letterSpacing: '0.5px', whiteSpace: 'nowrap',
             }}>
               about_me.py

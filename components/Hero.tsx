@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const phrases = [
@@ -58,7 +59,7 @@ export default function Hero() {
       }}>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
-          fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '1.5px',
+          fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '1.5px',
           textTransform: 'uppercase', color: 'var(--primary)',
           border: '1px solid rgba(0,240,255,0.2)',
           padding: '6px 16px', borderRadius: 100, marginBottom: 24,
@@ -72,8 +73,8 @@ export default function Hero() {
         </div>
 
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--text-muted)',
-          marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8,
+fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
+           marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8,
           animation: 'fade-up 0.8s 0.1s ease forwards', opacity: 0,
         }}>
           <span style={{ color: 'var(--primary)', fontWeight: 700 }}>$</span>
@@ -83,14 +84,14 @@ export default function Hero() {
 
         <h1 style={{ marginBottom: 16, animation: 'fade-up 0.8s 0.2s ease forwards', opacity: 0 }}>
           <span style={{
-            display: 'block', fontSize: 'clamp(36px, 6vw, 76px)',
+            display: 'block', fontSize: 'clamp(38px, 6.5vw, 80px)',
             fontWeight: 800, lineHeight: 0.95, letterSpacing: -3,
             color: 'var(--text)',
           }}>
             {t('hero.name.first')}
           </span>
           <span style={{
-            display: 'block', fontSize: 'clamp(36px, 6vw, 76px)',
+            display: 'block', fontSize: 'clamp(38px, 6.5vw, 80px)',
             fontWeight: 800, lineHeight: 0.95, letterSpacing: -3,
             background: 'var(--gradient-1)', WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -100,7 +101,7 @@ export default function Hero() {
         </h1>
 
         <p style={{
-          fontFamily: 'var(--font-mono)', fontSize: 13,
+          fontFamily: 'var(--font-mono)', fontSize: 14,
           color: 'var(--text-secondary)', lineHeight: 1.8, maxWidth: 520,
           marginBottom: 36,
           animation: 'fade-up 0.8s 0.3s ease forwards', opacity: 0,
@@ -119,9 +120,7 @@ export default function Hero() {
             onClick={(e) => { e.preventDefault(); const t = document.querySelector('#projects'); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top: y, behavior: 'smooth' }); } }}
           >
             <span>{t('hero.viewWork')}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 16, height: 16 }} aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+            <ArrowRight size={16} />
           </a>
           <a
             href="#contact"
@@ -207,7 +206,7 @@ export default function Hero() {
             {/* Photo */}
             <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%' }}>
               <Image
-                src="/images/profile.jpg"
+                src="/images/profile.jpeg"
                 alt="Abdulrahman Mohamed — AI Engineer and Data Scientist"
                 fill
                 style={{ objectFit: 'cover', objectPosition: 'top center' }}
@@ -226,13 +225,13 @@ export default function Hero() {
               {/* Name tag */}
               <div style={{ position: 'absolute', bottom: 16, left: 16, right: 16, zIndex: 2 }}>
                 <div style={{
-                  fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 700,
+                  fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 700,
                   color: 'var(--primary)', letterSpacing: '2px',
                 }}>
                   {t('hero.photo.name')}
                 </div>
                 <div style={{
-                  fontFamily: 'var(--font-mono)', fontSize: 9,
+                  fontFamily: 'var(--font-mono)', fontSize: 10,
                   color: 'rgba(255,255,255,0.5)', letterSpacing: '1px', marginTop: 2,
                 }}>
                   {t('hero.photo.title')}
@@ -247,7 +246,7 @@ export default function Hero() {
             background: 'var(--surface)',
             border: '1px solid rgba(0,240,255,0.2)',
             borderRadius: 100, padding: '5px 18px',
-            fontFamily: 'var(--font-mono)', fontSize: 10,
+            fontFamily: 'var(--font-mono)', fontSize: 11,
             color: 'var(--primary)', letterSpacing: '1.5px',
             whiteSpace: 'nowrap', zIndex: 3,
           }}>
@@ -268,7 +267,7 @@ export default function Hero() {
         style={{
           position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-          fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: 2,
+          fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 2,
           textTransform: 'uppercase', color: 'var(--text-muted)', zIndex: 3,
           animation: 'fade-up 0.8s 0.8s ease forwards', opacity: 0,
         }}

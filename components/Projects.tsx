@@ -1,61 +1,20 @@
 'use client';
 
-import { useRef, type MouseEvent, type ReactNode } from 'react';
+import { useRef, type MouseEvent } from 'react';
 import Image from 'next/image';
+import { Fingerprint, HeartPulse, Bot, BarChart4, Code2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { profile } from '@/data/profile';
 
-const ICONS: Record<string, ReactNode> = {
-  PROJECT_01: (
-    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 32, height: 32 }}>
-      <circle cx="20" cy="20" r="8" />
-      <circle cx="20" cy="20" r="14" strokeDasharray="2 3" />
-      <circle cx="20" cy="20" r="18" strokeDasharray="3 4" />
-      <circle cx="14" cy="12" r="2" fill="currentColor" stroke="none" />
-      <circle cx="8" cy="18" r="1.5" fill="currentColor" stroke="none" />
-      <circle cx="30" cy="24" r="2" fill="currentColor" stroke="none" />
-      <circle cx="16" cy="30" r="1.5" fill="currentColor" stroke="none" />
-      <path d="M20 12v-4M20 32v-4M12 20H8M32 20h-4" />
-    </svg>
-  ),
-  PROJECT_02: (
-    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 32, height: 32 }}>
-      <polyline points="2,24 10,24 14,14 18,28 22,10 26,22 30,18 38,18" />
-      <circle cx="20" cy="20" r="15" strokeDasharray="2 3" />
-      <circle cx="20" cy="20" r="10" strokeDasharray="3 4" />
-    </svg>
-  ),
-  PROJECT_03: (
-    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 32, height: 32 }}>
-      <rect x="4" y="6" width="32" height="22" rx="4" />
-      <path d="M12 32l6-4h6l6 4" />
-      <path d="M13 16h14M13 21h10" />
-      <circle cx="8" cy="6" r="1.5" fill="currentColor" stroke="none" />
-      <circle cx="18" cy="4" r="1" fill="currentColor" stroke="none" />
-      <circle cx="30" cy="8" r="1.5" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  PROJECT_04: (
-    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 32, height: 32 }}>
-      <rect x="4" y="16" width="6" height="16" rx="1" />
-      <rect x="13" y="10" width="6" height="22" rx="1" />
-      <rect x="22" y="4" width="6" height="28" rx="1" />
-      <path d="M4 36h32" />
-      <circle cx="7" cy="30" r="1" fill="currentColor" stroke="none" />
-      <circle cx="16" cy="24" r="1" fill="currentColor" stroke="none" />
-      <circle cx="25" cy="14" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  ),
+const projectIcons: Record<string, React.ReactNode> = {
+  PROJECT_01: <Fingerprint size={32} />,
+  PROJECT_02: <HeartPulse size={32} />,
+  PROJECT_03: <Bot size={32} />,
+  PROJECT_04: <BarChart4 size={32} />,
 };
 
-function getIcon(num: string): ReactNode {
-  return ICONS[num] || (
-    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 32, height: 32 }}>
-      <rect x="8" y="8" width="24" height="24" rx="3" strokeDasharray="2 2" />
-      <circle cx="20" cy="20" r="4" />
-      <path d="M20 8v-4M20 36v-4M8 20H4M36 20h-4" />
-    </svg>
-  );
+function getIcon(num: string): React.ReactNode {
+  return projectIcons[num] || <Code2 size={32} />;
 }
 
 function ProjectCard({
@@ -138,7 +97,7 @@ function ProjectCard({
       <div
         style={{
           position: 'relative',
-          height: 220,
+          height: 240,
           overflow: 'hidden',
           background: `linear-gradient(135deg, ${index % 2 === 0 ? 'rgba(0,240,255,0.12)' : 'rgba(124,58,237,0.12)'}, ${index % 2 === 0 ? 'rgba(124,58,237,0.06)' : 'rgba(0,240,255,0.06)'})`,
         }}
@@ -183,14 +142,14 @@ function ProjectCard({
       </div>
 
       {/* Content */}
-      <div style={{ padding: 24, position: 'relative', zIndex: 2 }}>
+      <div style={{ padding: 28, position: 'relative', zIndex: 2 }}>
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: 10,
+            fontSize: 13,
             letterSpacing: '2px',
             color: 'var(--primary)',
-            marginBottom: 10,
+            marginBottom: 12,
           }}
         >
           {project.num.replace('_', ' ')}
@@ -198,10 +157,10 @@ function ProjectCard({
 
         <h3
           style={{
-            fontSize: 17,
+            fontSize: 22,
             fontWeight: 700,
             color: 'var(--text)',
-            marginBottom: 6,
+            marginBottom: 8,
             lineHeight: 1.3,
           }}
         >
@@ -210,10 +169,10 @@ function ProjectCard({
 
         <p
           style={{
-            fontSize: 12,
+            fontSize: 14,
             color: 'var(--text-secondary)',
-            lineHeight: 1.7,
-            marginBottom: 16,
+            lineHeight: 1.8,
+            marginBottom: 20,
             display: '-webkit-box',
             WebkitLineClamp: 3,
             WebkitBoxOrient: 'vertical',
@@ -223,15 +182,15 @@ function ProjectCard({
           {t(`project.${project.num}.desc`) !== `project.${project.num}.desc` ? t(`project.${project.num}.desc`) : project.description}
         </p>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {project.tags.map((tag) => (
             <span
               key={tag}
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: 9,
+                fontSize: 11,
                 letterSpacing: '0.5px',
-                padding: '4px 10px',
+                padding: '5px 12px',
                 borderRadius: 100,
                 background: 'var(--primary-dim)',
                 color: 'var(--primary)',

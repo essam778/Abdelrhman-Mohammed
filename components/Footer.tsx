@@ -1,7 +1,6 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { profile } from '@/data/profile';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -24,7 +23,7 @@ export default function Footer() {
           alignItems: 'center',
           gap: 12,
           fontFamily: 'var(--font-mono)',
-          fontSize: 10,
+          fontSize: 12,
           color: 'var(--text-muted)',
           flexWrap: 'wrap',
         }}

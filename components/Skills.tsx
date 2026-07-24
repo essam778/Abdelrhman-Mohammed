@@ -1,25 +1,29 @@
 'use client';
 
-import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback, type ReactNode } from 'react';
+import { Network, Code2, BarChart4, Settings, Brain, Cpu, TrendingUp, MessageSquare,
+  Terminal, Zap, Calculator, Table,   GitBranch, Camera, Trophy, FileText,
+  Link, BookOpen, Library, Hash, Palette, ScanText, Workflow,
+  Rocket, Wrench, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { profile } from '@/data/profile';
 
-const iconMap: Record<string, string> = {
-  network: '🧠',
-  code: '💻',
-  chart: '📊',
-  settings: '⚙️',
+const iconMap: Record<string, ReactNode> = {
+  network: <Network size={18} />,
+  code: <Code2 size={18} />,
+  chart: <BarChart4 size={18} />,
+  settings: <Settings size={18} />,
 };
 
-const skillIcons: Record<string, string> = {
-  TensorFlow: '🧠', PyTorch: '🔥', 'Scikit-learn': '📈', Keras: '🧩',
-  'Deep Learning': '🤖', NLP: '📝', 'Power BI': '📊', 'Data Viz': '📉',
-  Python: '🐍', 'C/C++': '⚡', MATLAB: '📐',
-  Pandas: '🐼', Matplotlib: '📈',
-  Git: '🔀', OpenCV: '👁️', Kaggle: '🏆', Colab: '📒',
-  LangChain: '⛓️', LangGraph: '🕸️', LlamaIndex: '🦙', 'RAG Core': '📚',
-  NumPy: '🔢', Seaborn: '🎨', OCR: '📄', n8n: '⚡',
-  FastAPI: '🚀', Jupyter: '📓', Simulink: '🔧', 'Prompt Eng.': '💬',
+const skillIcons: Record<string, ReactNode> = {
+  TensorFlow: <Brain size={14} />, PyTorch: <Cpu size={14} />, 'Scikit-learn': <TrendingUp size={14} />, Keras: <Brain size={14} />,
+  'Deep Learning': <Brain size={14} />, NLP: <MessageSquare size={14} />, 'Power BI': <BarChart4 size={14} />, 'Data Viz': <TrendingUp size={14} />,
+  Python: <Terminal size={14} />, 'C/C++': <Zap size={14} />, MATLAB: <Calculator size={14} />,
+  Pandas: <Table size={14} />, Matplotlib: <TrendingUp size={14} />,
+  Git: <GitBranch size={14} />, OpenCV: <Camera size={14} />, Kaggle: <Trophy size={14} />, Colab: <FileText size={14} />,
+  LangChain: <Link size={14} />, LangGraph: <Workflow size={14} />, LlamaIndex: <BookOpen size={14} />, 'RAG Core': <Library size={14} />,
+  NumPy: <Hash size={14} />, Seaborn: <Palette size={14} />, OCR: <ScanText size={14} />, n8n: <Zap size={14} />,
+  FastAPI: <Rocket size={14} />, Jupyter: <FileText size={14} />, Simulink: <Wrench size={14} />, 'Prompt Eng.': <Sparkles size={14} />,
 };
 
 function ProgressBar({ pct, visible, color = 'var(--primary)' }: { pct: number; visible: boolean; color?: string }) {
@@ -137,15 +141,15 @@ export default function Skills() {
                   border: '1px solid var(--border)',
                   borderRadius: 100,
                   fontFamily: 'var(--font-mono)',
-                  fontSize: 11,
+                  fontSize: 12,
                   color: 'var(--text-secondary)',
                   whiteSpace: 'nowrap',
                   transition: 'var(--transition-fast)',
                   cursor: 'default',
                 }}
               >
-                <span style={{ fontSize: 13, flexShrink: 0 }} aria-hidden="true">
-                  {skillIcons[skill.name] || '▸'}
+                <span style={{ display: 'flex', flexShrink: 0 }} aria-hidden="true">
+                  {skillIcons[skill.name] || <Terminal size={14} />}
                 </span>
                 {skill.name}
                 <span style={{
@@ -154,7 +158,7 @@ export default function Skills() {
                   background: 'var(--primary-dim)',
                   color: 'var(--primary)',
                   borderRadius: 100,
-                  fontSize: 10,
+                  fontSize: 11,
                   fontWeight: 600,
                   letterSpacing: '0.5px',
                 }}>
@@ -210,14 +214,13 @@ export default function Skills() {
                   border: `1px solid ${color}30`,
                   borderRadius: 10,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 18,
                 }} aria-hidden="true">
-                  {iconMap[category.icon] || '📦'}
+                  {iconMap[category.icon] || <Code2 size={18} />}
                 </div>
                 <div>
                   <div style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: 700,
                     color: 'var(--text)',
                     letterSpacing: '0.5px',
@@ -226,7 +229,7 @@ export default function Skills() {
                   </div>
                   <div style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: 10,
+                    fontSize: 11,
                     color: color,
                     opacity: 0.8,
                     marginTop: 2,
@@ -251,14 +254,14 @@ export default function Skills() {
                         fontFamily: 'var(--font-mono)', fontSize: 11,
                         color: 'var(--text-secondary)',
                       }}>
-                        <span style={{ fontSize: 14, flexShrink: 0 }} aria-hidden="true">
-                          {skillIcons[item.name] || '▸'}
+                        <span style={{ display: 'flex', flexShrink: 0 }} aria-hidden="true">
+                          {skillIcons[item.name] || <Terminal size={14} />}
                         </span>
                         {item.name}
                       </span>
                       <span style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: 10,
+                        fontSize: 11,
                         fontWeight: 700,
                         color: color,
                         letterSpacing: '0.5px',
