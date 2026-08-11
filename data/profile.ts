@@ -53,40 +53,6 @@ export const profile = {
       tech: ['Python', 'Data Science', 'Teaching'],
     },
     {
-      date: 'Aug 2025 – Dec 2025',
-      title: 'Samsung Innovation Campus – AI Program',
-      org: 'Samsung',
-      details: [
-        '4-month intensive program covering Python for data analysis, probability, statistics, data preprocessing, Power BI visualization, introductory LLM applications, and model deployment.',
-        'Also served as an instructor for the Samsung DSIC track, guiding students through AI fundamentals and project-based learning.',
-      ],
-      tech: ['Python', 'Power BI', 'LLM', 'ML'],
-    },
-    {
-      date: 'Jun 2025 – Dec 2025',
-      title: 'Generative AI Diploma',
-      org: 'DEPI, EYOUTH',
-      details: [
-        '6-month intensive diploma covering ML, Deep Learning, NLP, and Computer Vision.',
-        'Built a text classification model with 97% accuracy on a medical dataset.',
-      ],
-      tech: ['TensorFlow', 'Scikit-learn', 'NLP', 'Computer Vision'],
-    },
-    {
-      date: 'Sep 2024',
-      title: 'ETA AI Course',
-      org: 'NTI, Huawei',
-      details: ['Completed Python, ML, and deep learning applications training.'],
-      tech: ['Python', 'ML', 'Deep Learning'],
-    },
-    {
-      date: 'Jul 2024',
-      title: 'Embedded AVR Course',
-      org: 'ITI',
-      details: ['Learned AVR microcontrollers, GPIO, UART, SPI, and embedded C in a 168-hour intensive course.'],
-      tech: ['C', 'Embedded C', 'AVR', 'Microcontrollers'],
-    },
-    {
       date: 'Jul – Aug 2023',
       title: 'Maintenance Engineer Intern',
       org: 'ELARABY Group, Egypt',
@@ -146,6 +112,7 @@ export const profile = {
       items: [
         { name: 'Python', pct: 95 },
         { name: 'C/C++', pct: 80 },
+        { name: 'SQL', pct: 85 },
         { name: 'MATLAB', pct: 75 },
       ],
     },
@@ -170,6 +137,10 @@ export const profile = {
   },
 
   certifications: [
+    { title: 'Samsung Innovation Campus – AI Program', org: 'Samsung', year: '2025', icon: 'monitor' },
+    { title: 'Generative AI Diploma', org: 'DEPI, EYOUTH', year: '2025', icon: 'star' },
+    { title: 'ETA AI Course', org: 'NTI, Huawei', year: '2024', icon: 'shield' },
+    { title: 'Embedded AVR Course', org: 'ITI', year: '2024', icon: 'monitor' },
     { title: 'Building LLM Applications With Prompt Engineering', org: 'NVIDIA — Deep Learning Institute', year: '2026', icon: 'monitor' },
     { title: 'Leadership & Soft Skills', org: 'Life Makers Foundation · Global Volunteering', year: '2025', icon: 'users' },
     { title: 'Machine Learning Specialization', org: 'DeepLearning.AI · Coursera by Andrew Ng', year: '2024', icon: 'shield' },

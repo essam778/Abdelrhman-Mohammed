@@ -58,26 +58,21 @@ function ProjectCard({
   return (
     <div
       ref={cardRef}
+      className="project-card reveal"
       data-tilt
       onMouseMove={handleMouseMove}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'var(--border)';
-        e.currentTarget.style.boxShadow = 'none';
-        handleMouseLeave();
-      }}
       style={{
         position: 'relative',
-        background: 'var(--surface)',
-        border: '2px solid var(--border)',
-        borderRadius: 'var(--radius)',
+        background: 'rgba(255, 255, 255, 0.02)',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255, 140, 80, 0.15)',
+        borderRadius: '16px',
         overflow: 'hidden',
-        transition: 'var(--transition)',
+        transition: 'transform 0.35s ease, box-shadow 0.35s ease',
         transformStyle: 'preserve-3d',
         cursor: 'default',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'var(--border-hover)';
-        e.currentTarget.style.boxShadow = 'var(--shadow)';
+        boxShadow: '0 0 30px rgba(255, 80, 40, 0.1)',
+        transitionDelay: `${index * 150}ms`,
       }}
     >
       {/* Glow overlay */}
@@ -93,75 +88,91 @@ function ProjectCard({
         }}
       />
 
-      {/* Image area */}
+      {/* Image area with macOS frame */}
       <div
+        className="project-img-container"
         style={{
           position: 'relative',
           height: 240,
           overflow: 'hidden',
-          background: `linear-gradient(135deg, ${index % 2 === 0 ? 'rgba(0,240,255,0.12)' : 'rgba(124,58,237,0.12)'}, ${index % 2 === 0 ? 'rgba(124,58,237,0.06)' : 'rgba(0,240,255,0.06)'})`,
+          background: 'rgba(15, 34, 41, 0.9)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
         }}
       >
-        {/* Circuit board pattern overlay */}
+        {/* macOS Top Bar */}
         <div style={{
-          position: 'absolute', inset: 0, opacity: 0.12, zIndex: 1,
-          backgroundImage: `
-            linear-gradient(90deg, var(--primary) 1px, transparent 1px),
-            linear-gradient(rgba(0,240,255,0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '30px 30px',
-          pointerEvents: 'none',
-        }} />
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            style={{ objectFit: 'cover', objectPosition: 'top center' }}
-          />
-        ) : (
+          position: 'absolute', top: 0, left: 0, right: 0, height: 28,
+          background: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(10px)',
+          display: 'flex', alignItems: 'center', padding: '0 12px', gap: 6,
+          zIndex: 10,
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+        }}>
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f56' }} />
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ffbd2e' }} />
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#27c93f' }} />
+        </div>
+
+        <div className="project-img-wrapper" style={{ position: 'absolute', top: 28, left: 0, right: 0, bottom: 0, transition: 'transform 0.35s ease' }}>
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              style={{ objectFit: 'cover', objectPosition: 'top center' }}
+            />
+          ) : (
+            <div style={{
+              position: 'absolute', inset: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: 'linear-gradient(135deg, rgba(255,140,80,0.1), transparent)',
+            }}>
+              <div style={{
+                color: '#ff6b4a', opacity: 0.5,
+                animation: 'icon-float 3s ease-in-out infinite',
+              }}>
+                {getIcon(project.num)}
+              </div>
+            </div>
+          )}
+          {/* Subtle dark gradient overlay to unify styles */}
           <div style={{
             position: 'absolute', inset: 0,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <div style={{
-              color: 'var(--primary)', opacity: 0.5,
-              animation: 'icon-float 3s ease-in-out infinite',
-            }}>
-              {getIcon(project.num)}
-            </div>
-          </div>
-        )}
-        {/* Bottom fade gradient */}
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%',
-          background: 'linear-gradient(transparent, var(--surface))',
-          zIndex: 1, pointerEvents: 'none',
-        }} />
+            background: 'linear-gradient(to top, rgba(15,34,41,0.9) 0%, rgba(15,34,41,0.2) 60%, transparent 100%)',
+            pointerEvents: 'none',
+          }} />
+        </div>
       </div>
 
       {/* Content */}
-      <div style={{ padding: 28, position: 'relative', zIndex: 2 }}>
+      <div style={{ padding: '32px 28px', position: 'relative', zIndex: 2 }}>
         <div
           style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
             fontFamily: 'var(--font-mono)',
             fontSize: 13,
+            fontWeight: 800,
             letterSpacing: '2px',
-            color: 'var(--primary)',
-            marginBottom: 12,
+            color: '#ff6b4a',
+            marginBottom: 16,
           }}
         >
+          <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#ff6b4a', boxShadow: '0 0 10px #ff6b4a' }} />
           {project.num.replace('_', ' ')}
         </div>
 
         <h3
+          className="project-title"
           style={{
             fontSize: 22,
             fontWeight: 700,
             color: 'var(--text)',
-            marginBottom: 8,
+            marginBottom: 12,
             lineHeight: 1.3,
+            transition: 'color 0.3s ease',
           }}
         >
           {t(`project.${project.num}.title`) !== `project.${project.num}.title` ? t(`project.${project.num}.title`) : project.title}
@@ -186,15 +197,18 @@ function ProjectCard({
           {project.tags.map((tag) => (
             <span
               key={tag}
+              className="tag-pill"
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: 11,
+                fontWeight: 600,
                 letterSpacing: '0.5px',
-                padding: '5px 12px',
+                padding: '6px 14px',
                 borderRadius: 100,
-                background: 'var(--bg)',
-                color: 'var(--primary)',
-                border: '2px solid var(--primary)',
+                background: 'rgba(255, 100, 60, 0.12)',
+                border: '1px solid rgba(255, 140, 80, 0.25)',
+                color: '#ffb399',
+                transition: 'background 0.2s ease, color 0.2s ease',
               }}
             >
               {tag}
@@ -253,6 +267,22 @@ export default function Projects() {
       </div>
 
       <style jsx>{`
+        .project-card:hover {
+          transform: translateY(-8px) perspective(800px) rotateX(0deg) rotateY(0deg) !important;
+          box-shadow: 0 15px 50px rgba(255, 80, 40, 0.2) !important;
+        }
+        .project-card:hover .project-img-wrapper {
+          transform: scale(1.05);
+        }
+        .project-card:hover .project-title {
+          background: linear-gradient(90deg, #fff, #ffb399);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .tag-pill:hover {
+          background: rgba(255, 100, 60, 0.25) !important;
+          color: #fff !important;
+        }
         @media (max-width: 1024px) {
           :global(.projects-grid) {
             grid-template-columns: repeat(2, 1fr) !important;

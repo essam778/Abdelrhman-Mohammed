@@ -2,31 +2,31 @@
 
 import { useEffect, useRef, useState, useMemo, useCallback, type ReactNode } from 'react';
 import { Network, Code2, BarChart4, Settings, Brain, Cpu, TrendingUp, MessageSquare,
-  Terminal, Zap, Calculator, Table,   GitBranch, Camera, Trophy, FileText,
+  Terminal, Zap, Calculator, Table, Database, GitBranch, Camera, Trophy, FileText,
   Link, BookOpen, Library, Hash, Palette, ScanText, Workflow,
   Rocket, Wrench, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { profile } from '@/data/profile';
 
 const iconMap: Record<string, ReactNode> = {
-  network: <Network size={18} />,
-  code: <Code2 size={18} />,
-  chart: <BarChart4 size={18} />,
-  settings: <Settings size={18} />,
+  network: <Network size={22} />,
+  code: <Code2 size={22} />,
+  chart: <BarChart4 size={22} />,
+  settings: <Settings size={22} />,
 };
 
 const skillIcons: Record<string, ReactNode> = {
-  TensorFlow: <Brain size={14} />, PyTorch: <Cpu size={14} />, 'Scikit-learn': <TrendingUp size={14} />, Keras: <Brain size={14} />,
-  'Deep Learning': <Brain size={14} />, NLP: <MessageSquare size={14} />, 'Power BI': <BarChart4 size={14} />, 'Data Viz': <TrendingUp size={14} />,
-  Python: <Terminal size={14} />, 'C/C++': <Zap size={14} />, MATLAB: <Calculator size={14} />,
-  Pandas: <Table size={14} />, Matplotlib: <TrendingUp size={14} />,
-  Git: <GitBranch size={14} />, OpenCV: <Camera size={14} />, Kaggle: <Trophy size={14} />, Colab: <FileText size={14} />,
-  LangChain: <Link size={14} />, LangGraph: <Workflow size={14} />, LlamaIndex: <BookOpen size={14} />, 'RAG Core': <Library size={14} />,
-  NumPy: <Hash size={14} />, Seaborn: <Palette size={14} />, OCR: <ScanText size={14} />, n8n: <Zap size={14} />,
-  FastAPI: <Rocket size={14} />, Jupyter: <FileText size={14} />, Simulink: <Wrench size={14} />, 'Prompt Eng.': <Sparkles size={14} />,
+  TensorFlow: <Brain size={17} />, PyTorch: <Cpu size={17} />, 'Scikit-learn': <TrendingUp size={17} />, Keras: <Brain size={17} />,
+  'Deep Learning': <Brain size={17} />, NLP: <MessageSquare size={17} />, 'Power BI': <BarChart4 size={17} />, 'Data Viz': <TrendingUp size={17} />,
+  Python: <Terminal size={17} />, 'C/C++': <Zap size={17} />, MATLAB: <Calculator size={17} />, SQL: <Database size={17} />,
+  Pandas: <Table size={17} />, Matplotlib: <TrendingUp size={17} />,
+  Git: <GitBranch size={17} />, OpenCV: <Camera size={17} />, Kaggle: <Trophy size={17} />, Colab: <FileText size={17} />,
+  LangChain: <Link size={17} />, LangGraph: <Workflow size={17} />, LlamaIndex: <BookOpen size={17} />, 'RAG Core': <Library size={17} />,
+  NumPy: <Hash size={17} />, Seaborn: <Palette size={17} />, OCR: <ScanText size={17} />, n8n: <Zap size={17} />,
+  FastAPI: <Rocket size={17} />, Jupyter: <FileText size={17} />, Simulink: <Wrench size={17} />, 'Prompt Eng.': <Sparkles size={17} />,
 };
 
-function ProgressBar({ pct, visible, color = 'var(--primary)' }: { pct: number; visible: boolean; color?: string }) {
+function ProgressBar({ pct, visible, delay = 0 }: { pct: number; visible: boolean; delay?: number }) {
   return (
     <div style={{
       position: 'relative',
@@ -36,15 +36,25 @@ function ProgressBar({ pct, visible, color = 'var(--primary)' }: { pct: number; 
       overflow: 'hidden',
       flex: 1,
     }}>
-      <div style={{
+      <div className="progress-fill" style={{
         position: 'absolute',
         left: 0, top: 0, bottom: 0,
         width: visible ? `${pct}%` : '0%',
-        background: `linear-gradient(90deg, ${color}, color-mix(in srgb, ${color} 60%, var(--secondary)))`,
+        background: `linear-gradient(90deg, #ff6b4a, #ff3d3d)`,
         borderRadius: 100,
-        transition: 'width 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
-        boxShadow: `0 0 8px ${color}60`,
-      }} />
+        transition: `width 1.2s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        boxShadow: `0 0 8px rgba(255,107,74,0.4)`,
+        overflow: 'hidden',
+      }}>
+        {visible && (
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+            transform: 'translateX(-100%)',
+            animation: `shimmer 600ms ease-out ${delay + 1000}ms forwards`,
+          }} />
+        )}
+      </div>
     </div>
   );
 }
@@ -122,15 +132,16 @@ export default function Skills() {
         }} />
       </div>
 
-      {/* Marquee bar */}
-      <div style={{ overflow: 'hidden', width: '100%', marginBottom: 56 }}>
+      {/* Scrollable Pills Row -> Changed to Marquee */}
+      <div style={{ width: '100%', marginBottom: 56, overflow: 'hidden' }}>
         <div
           className="marquee-track"
           style={{
             display: 'flex',
             gap: 12,
             width: 'max-content',
-            animation: 'marquee-scroll 50s linear infinite',
+            animation: 'marquee-scroll 40s linear infinite',
+            padding: '4px 0',
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.animationPlayState = 'paused';
@@ -140,42 +151,37 @@ export default function Skills() {
           }}
         >
           {[0, 1].map((copy) =>
-            allSkills.map((skill) => (
-              <span
-                key={`${skill.name}-${copy}`}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '8px 18px',
-                  background: 'var(--surface)',
-                  border: '2px solid var(--border)',
-                  borderRadius: 100,
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 12,
-                  color: 'var(--text-secondary)',
-                  whiteSpace: 'nowrap',
-                  transition: 'var(--transition-fast)',
-                  cursor: 'default',
-                }}
-              >
-                <span style={{ display: 'flex', flexShrink: 0 }} aria-hidden="true">
-                  {skillIcons[skill.name] || <Terminal size={14} />}
-                </span>
-                {skill.name}
-                <span style={{
-                  marginLeft: 2,
-                  padding: '2px 8px',
-                  background: 'var(--primary-dim)',
-                  color: 'var(--primary)',
-                  borderRadius: 100,
-                  fontSize: 11,
-                  fontWeight: 600,
-                  letterSpacing: '0.5px',
-                }}>
-                  {skill.pct}%
-                </span>
+            allSkills.map((skill, index) => (
+            <span
+              key={`${skill.name}-${index}`}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '8px 18px',
+                background: 'rgba(255,255,255,0.02)',
+                border: '1px solid rgba(255,140,80,0.15)',
+                borderRadius: 100,
+                fontFamily: 'var(--font-mono)',
+                fontSize: 12,
+                color: 'var(--text-secondary)',
+                whiteSpace: 'nowrap',
+                transition: 'var(--transition-fast)',
+                backdropFilter: 'blur(10px)',
+                cursor: 'default',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              }}
+            >
+              <span style={{ 
+                display: 'flex', flexShrink: 0, alignItems: 'center', justifyContent: 'center',
+                width: 28, height: 28, borderRadius: '50%',
+                background: 'rgba(255, 100, 60, 0.25)',
+                color: '#ff825c'
+              }} aria-hidden="true">
+                {skillIcons[skill.name] || <Terminal size={17} />}
               </span>
+              {skill.name}
+            </span>
             )),
           )}
         </div>
@@ -191,42 +197,46 @@ export default function Skills() {
               key={key}
               ref={(el) => setCategoryRef(key, el)}
               data-category={key}
-              className="skill-category"
+              className="skill-category glass-panel"
               style={{
-                background: 'var(--surface)',
-                border: '2px solid var(--border)',
-                borderRadius: 'var(--radius)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 140, 80, 0.15)',
+                boxShadow: '0 0 40px rgba(255, 80, 40, 0.05)',
+                borderRadius: '16px',
                 padding: 28,
-                transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.borderColor = `${color}40`;
-                e.currentTarget.style.boxShadow = `0 12px 40px ${color}10`;
+                e.currentTarget.style.transform = 'translateY(-6px)';
+                e.currentTarget.style.boxShadow = '0 15px 70px rgba(255, 80, 40, 0.2)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'var(--border)';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.boxShadow = '0 0 40px rgba(255, 80, 40, 0.05)';
               }}
             >
+              {/* Top Gradient Border */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, #ff6b4a, transparent)' }} />
               {/* Category header */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 10,
+                gap: 12,
                 marginBottom: 24,
                 paddingBottom: 16,
-                borderBottom: `1px solid ${color}20`,
+                borderBottom: `1px solid rgba(255,255,255,0.05)`,
               }}>
                 <div style={{
-                  width: 36, height: 36,
-                  background: `${color}15`,
-                  border: `1px solid ${color}30`,
-                  borderRadius: 10,
+                  width: 44, height: 44,
+                  background: 'rgba(255, 100, 60, 0.25)',
+                  borderRadius: '50%',
+                  color: '#ff825c',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }} aria-hidden="true">
-                  {iconMap[category.icon] || <Code2 size={18} />}
+                  {iconMap[category.icon] || <Code2 size={22} />}
                 </div>
                 <div>
                   <div style={{
@@ -252,8 +262,13 @@ export default function Skills() {
 
               {/* Skill items with progress bars */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {category.items.map((item) => (
-                  <div key={item.name}>
+                {category.items.map((item, index) => (
+                  <div key={item.name} className="skill-row" style={{
+                    padding: '8px 12px',
+                    margin: '-8px -12px',
+                    borderRadius: '8px',
+                    transition: 'background 0.2s ease',
+                  }}>
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -261,28 +276,34 @@ export default function Skills() {
                       marginBottom: 7,
                     }}>
                       <span style={{
-                        display: 'flex', alignItems: 'center', gap: 7,
-                        fontFamily: 'var(--font-mono)', fontSize: 11,
-                        color: 'var(--text-secondary)',
+                        display: 'flex', alignItems: 'center', gap: 10,
+                        fontFamily: 'var(--font-mono)', fontSize: 12,
+                        color: 'var(--text)',
                       }}>
-                        <span style={{ display: 'flex', flexShrink: 0 }} aria-hidden="true">
-                          {skillIcons[item.name] || <Terminal size={14} />}
+                        <span className="skill-icon-badge" style={{ 
+                          display: 'flex', flexShrink: 0, alignItems: 'center', justifyContent: 'center',
+                          width: 28, height: 28, borderRadius: '50%',
+                          background: 'rgba(255, 100, 60, 0.25)',
+                          color: '#ff825c',
+                          transition: 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                        }} aria-hidden="true">
+                          {skillIcons[item.name] || <Terminal size={17} />}
                         </span>
                         {item.name}
                       </span>
                       <span style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: 11,
+                        fontSize: 12,
                         fontWeight: 700,
-                        color: color,
+                        color: '#ff6b4a',
                         letterSpacing: '0.5px',
                         minWidth: 32,
                         textAlign: 'right',
                       }}>
-                        {isVisible ? item.pct : 0}%
+                        {item.pct}%
                       </span>
                     </div>
-                    <ProgressBar pct={item.pct} visible={isVisible} color={color} />
+                    <ProgressBar pct={item.pct} visible={isVisible} delay={index * 80} />
                   </div>
                 ))}
               </div>
@@ -295,7 +316,31 @@ export default function Skills() {
         .skills-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+          gap: 24px;
+        }
+        @keyframes marquee-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); opacity: 0; }
+          50% { opacity: 1; }
+          100% { transform: translateX(100%); opacity: 0; }
+        }
+        .skill-row:hover {
+          background: rgba(255, 255, 255, 0.04) !important;
+        }
+        .skill-row:hover .skill-icon-badge {
+          transform: scale(1.08);
+          background: rgba(255, 100, 60, 0.35) !important;
+          color: #ff9d82 !important;
+        }
+        .hidden-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hidden-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
         @media (max-width: 1024px) {
           .skills-grid {
