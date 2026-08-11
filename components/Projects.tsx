@@ -68,10 +68,10 @@ function ProjectCard({
       style={{
         position: 'relative',
         background: 'var(--surface)',
-        border: '1px solid var(--border)',
+        border: '2px solid var(--border)',
         borderRadius: 'var(--radius)',
         overflow: 'hidden',
-        transition: 'transform 0.15s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+        transition: 'var(--transition)',
         transformStyle: 'preserve-3d',
         cursor: 'default',
       }}
@@ -192,9 +192,9 @@ function ProjectCard({
                 letterSpacing: '0.5px',
                 padding: '5px 12px',
                 borderRadius: 100,
-                background: 'var(--primary-dim)',
+                background: 'var(--bg)',
                 color: 'var(--primary)',
-                border: '1px solid rgba(0,240,255,0.08)',
+                border: '2px solid var(--primary)',
               }}
             >
               {tag}

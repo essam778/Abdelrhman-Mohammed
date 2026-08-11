@@ -61,7 +61,7 @@ export default function Contact() {
         <div style={{
           marginTop: 64,
           background: 'var(--surface)',
-          border: '1px solid var(--border)',
+          border: '2px solid var(--border)',
           borderRadius: 24,
           padding: '48px 32px',
           display: 'flex',
@@ -92,7 +92,7 @@ export default function Contact() {
               color: 'var(--text)',
               textDecoration: 'none',
               padding: '16px 32px',
-              border: '1px solid var(--border)',
+              border: '2px solid var(--border)',
               borderRadius: 100,
               background: 'rgba(255,255,255,0.02)',
               transition: 'var(--transition)',

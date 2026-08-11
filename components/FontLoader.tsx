@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-const FONT_URL = 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&family=Fira+Code:wght@400;500;600&display=swap';
+const FONT_URL = 'https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Space+Grotesk:wght@400;500;700&family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap';
 
 export default function FontLoader() {
   useEffect(() => {

@@ -57,19 +57,15 @@ export default function Hero() {
         position: 'relative', zIndex: 3, maxWidth: 680, flex: 1,
         paddingRight: 20,
       }}>
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 8,
-          fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '1.5px',
-          textTransform: 'uppercase', color: 'var(--primary)',
-          border: '1px solid rgba(0,240,255,0.2)',
-          padding: '6px 16px', borderRadius: 100, marginBottom: 24,
+        <div className="font-mono" style={{
+          display: 'inline-flex', alignItems: 'center', gap: 12,
+          fontSize: 13, letterSpacing: '3px',
+          textTransform: 'uppercase', color: 'var(--text)',
+          marginBottom: 24,
           animation: 'fade-up 0.8s ease forwards', opacity: 0,
         }}>
-          <span style={{
-            width: 6, height: 6, background: 'var(--primary)',
-            borderRadius: '50%', animation: 'blink 1.5s step-end infinite',
-          }} />
-          {t('hero.badge')}
+          <span style={{ color: 'var(--primary)', fontWeight: 800 }}>{'//'}</span>
+          <span style={{ textShadow: '0 0 12px var(--primary-glow)', fontWeight: 600 }}>{t('hero.badge')}</span>
         </div>
 
         <div style={{
@@ -83,16 +79,16 @@ fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
         </div>
 
         <h1 style={{ marginBottom: 16, animation: 'fade-up 0.8s 0.2s ease forwards', opacity: 0 }}>
-          <span style={{
+          <span className="font-display neon" style={{
             display: 'block', fontSize: 'clamp(38px, 6.5vw, 80px)',
-            fontWeight: 800, lineHeight: 0.95, letterSpacing: -3,
+            lineHeight: 0.95, letterSpacing: '-0.01em',
             color: 'var(--text)',
           }}>
             {t('hero.name.first')}
           </span>
-          <span style={{
+          <span className="font-display" style={{
             display: 'block', fontSize: 'clamp(38px, 6.5vw, 80px)',
-            fontWeight: 800, lineHeight: 0.95, letterSpacing: -3,
+            lineHeight: 0.95, letterSpacing: '-0.01em',
             background: 'var(--gradient-1)', WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}>
@@ -139,122 +135,45 @@ fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         width: 440, height: 440,
       }}>
-        {/* Neural sphere behind */}
-        <div id="hero-sphere" style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.5,
-        }}>
-          <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {[380, 310, 240, 170].map((size, i) => (
-              <div key={i} style={{
-                position: 'absolute', width: size, height: size,
-                borderRadius: '50%',
-                border: `1px solid ${
-                  i === 0 ? 'rgba(0,240,255,0.05)' :
-                  i === 1 ? 'rgba(124,58,237,0.07)' :
-                  i === 2 ? 'rgba(0,240,255,0.07)' : 'rgba(244,114,182,0.05)'
-                }`,
-                animation: `sphere-rotate ${25 - i * 5}s ${i % 2 === 0 ? '' : 'reverse'} linear infinite`,
-              }} />
-            ))}
-          </div>
-        </div>
+        {/* Neural sphere removed for retro design */}
 
         {/* Photo frame */}
-        <div id="hero-photo" style={{
-          position: 'relative', zIndex: 2,
-          width: 320, height: 400,
-          animation: 'float-y 6s ease-in-out infinite',
-        }}>
+        <div className="retro-photo" style={{ position: 'relative', zIndex: 2, width: 340, height: 420 }}>
           <div style={{
             position: 'relative', width: '100%', height: '100%',
-            borderRadius: 20, overflow: 'hidden',
-            border: '1px solid rgba(0,240,255,0.12)',
-            boxShadow: '0 0 60px rgba(0,240,255,0.06), 0 0 120px rgba(0,240,255,0.03), inset 0 0 60px rgba(0,240,255,0.02)',
+            border: '4px solid var(--primary)', borderRadius: '4px',
+            overflow: 'hidden', boxShadow: '16px 16px 0px rgba(0,0,0,0.6)',
           }}>
-            {/* Animated gradient border */}
-            <div style={{
-              position: 'absolute', inset: -1.5, borderRadius: 21,
-              background: 'conic-gradient(from 0deg, transparent, var(--primary), transparent, var(--secondary), transparent 60%)',
-              animation: 'sphere-rotate 6s linear infinite',
-              zIndex: 0,
-              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-              WebkitMaskComposite: 'destination-out',
-              maskComposite: 'exclude',
-              padding: 2,
-            }} />
-            {/* Corner brackets */}
-            {[
-              { top: -1, left: -1, r: '0deg' },
-              { top: -1, right: -1, r: '90deg' },
-              { bottom: -1, left: -1, r: '-90deg' },
-              { bottom: -1, right: -1, r: '180deg' },
-            ].map((c, i) => (
-              <div key={i} style={{
-                position: 'absolute', ...c, width: 30, height: 30, zIndex: 3,
-                borderTop: '2px solid var(--primary)',
-                borderLeft: '2px solid var(--primary)',
-                transform: `rotate(${c.r})`,
-                filter: 'drop-shadow(0 0 6px var(--primary))',
-              }} />
-            ))}
-            {/* Grid */}
-            <div style={{
-              position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-              backgroundImage: 'linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px)',
-              backgroundSize: '20px 20px',
-            }} />
-            {/* Photo */}
-            <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%' }}>
-              <Image
-                src="/images/profile.jpeg"
-                alt="Abdulrahman Mohamed — AI Engineer and Data Scientist"
-                fill
-                style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                priority
-                fetchPriority="high"
-                quality={85}
-                sizes="(max-width: 768px) 280px, 320px"
-              />
-              {/* Bottom fade */}
-              <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0,
-                height: '55%',
-                background: 'linear-gradient(transparent, rgba(10,10,15,0.8))',
-                zIndex: 1,
-              }} />
-              {/* Name tag */}
-              <div style={{ position: 'absolute', bottom: 16, left: 16, right: 16, zIndex: 2 }}>
-                <div style={{
-                  fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 700,
-                  color: 'var(--primary)', letterSpacing: '2px',
-                }}>
-                  {t('hero.photo.name')}
-                </div>
-                <div style={{
-                  fontFamily: 'var(--font-mono)', fontSize: 10,
-                  color: 'rgba(255,255,255,0.5)', letterSpacing: '1px', marginTop: 2,
-                }}>
-                  {t('hero.photo.title')}
-                </div>
+            <Image
+              src="/images/profile.jpeg"
+              alt="Abdulrahman Mohamed — AI Engineer and Data Scientist"
+              fill
+              style={{ objectFit: 'cover', filter: 'sepia(40%) contrast(1.2) brightness(0.9) hue-rotate(-10deg)' }}
+              priority
+              fetchPriority="high"
+              quality={90}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(15, 34, 41, 0.8))', zIndex: 1 }} />
+            <div style={{ position: 'absolute', bottom: 16, left: 16, right: 16, zIndex: 2 }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 700, color: 'var(--secondary)', letterSpacing: '2px' }}>
+                {t('hero.photo.name')}
+              </div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text)', letterSpacing: '1px', marginTop: 4 }}>
+                {t('hero.photo.title')}
               </div>
             </div>
           </div>
           {/* Status pill */}
           <div style={{
-            position: 'absolute', bottom: -12, left: '50%', transform: 'translateX(-50%)',
+            position: 'absolute', top: -16, right: -16,
             display: 'flex', alignItems: 'center', gap: 6,
-            background: 'var(--surface)',
-            border: '1px solid rgba(0,240,255,0.2)',
-            borderRadius: 100, padding: '5px 18px',
-            fontFamily: 'var(--font-mono)', fontSize: 11,
-            color: 'var(--primary)', letterSpacing: '1.5px',
-            whiteSpace: 'nowrap', zIndex: 3,
+            background: 'var(--secondary)', color: 'var(--bg)',
+            border: '2px solid var(--border)', borderRadius: 100, padding: '8px 16px',
+            fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700,
+            letterSpacing: '1px', whiteSpace: 'nowrap', zIndex: 3,
+            boxShadow: '4px 4px 0px rgba(0,0,0,0.4)',
+            transform: 'rotate(5deg)'
           }}>
-            <span style={{
-              width: 5, height: 5, borderRadius: '50%',
-              background: 'var(--primary)',
-              animation: 'blink 1.5s step-end infinite',
-            }} />
             {t('hero.photo.status')}
           </div>
         </div>
@@ -262,6 +181,7 @@ fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
 
       {/* Scroll indicator */}
       <div
+        className="scroll-indicator"
         role="presentation"
         aria-hidden="true"
         style={{
@@ -279,6 +199,35 @@ fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
           animation: 'scroll-bounce 2s ease-in-out infinite',
         }} />
       </div>
+
+      <style jsx>{`
+        @media (max-width: 1024px) {
+          #hero {
+            flex-direction: column !important;
+            justify-content: center !important;
+            text-align: center;
+            padding-top: 120px !important;
+            padding-bottom: 80px !important;
+          }
+          #hero-content {
+            align-items: center;
+            padding-right: 0 !important;
+            margin-bottom: 40px;
+          }
+          #hero-content p {
+            margin: 0 auto 36px auto;
+          }
+          #hero-content .font-mono {
+            justify-content: center;
+          }
+          #hero-content div[style*="gap: 14"] {
+            justify-content: center;
+          }
+          .scroll-indicator {
+            display: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

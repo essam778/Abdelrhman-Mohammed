@@ -194,7 +194,7 @@ export default function Experience() {
                         background: 'var(--primary-dim)',
                         color: 'var(--primary)',
                         letterSpacing: '0.5px',
-                        border: '1px solid rgba(0,240,255,0.12)',
+                        border: '2px solid var(--primary)',
                       }}>
                         {tech}
                       </span>
@@ -238,7 +238,7 @@ export default function Experience() {
                     padding: '14px 16px',
                     background: 'var(--surface)',
                     borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--border)',
+                    border: '2px solid var(--border)',
                     borderLeft: '3px solid var(--primary)',
                     transition: 'transform 0.3s ease, border-left-color 0.3s ease, background 0.3s ease',
                     cursor: 'default',
@@ -321,7 +321,7 @@ export default function Experience() {
                       padding: 18,
                       background: 'var(--surface)',
                       borderRadius: 'var(--radius)',
-                      border: '1px solid var(--border)',
+                      border: '2px solid var(--border)',
                       transition: 'transform 0.3s ease, border-color 0.3s ease',
                       cursor: 'default',
                       transitionDelay: `${i * 0.1}s`,

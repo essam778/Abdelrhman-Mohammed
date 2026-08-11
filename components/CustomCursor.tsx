@@ -34,16 +34,18 @@ export default function CustomCursor() {
 
     const hoverEls = document.querySelectorAll('a, button, [data-tilt], .skill-chip, .skill-category, .detail-row, .ctrl-btn, .social-link, .cert-card, .project-card');
     function onEnter(this: HTMLElement) {
-      trail!.style.width = '56px';
-      trail!.style.height = '56px';
+      trail!.style.width = '64px';
+      trail!.style.height = '64px';
       trail!.style.borderColor = 'var(--secondary)';
-      trail!.style.background = 'rgba(124, 58, 237, 0.05)';
+      trail!.style.background = 'var(--secondary-dim)';
+      dot!.style.transform = 'translate(-50%, -50%) scale(1.5)';
     }
     function onLeave(this: HTMLElement) {
-      trail!.style.width = '40px';
-      trail!.style.height = '40px';
+      trail!.style.width = '48px';
+      trail!.style.height = '48px';
       trail!.style.borderColor = 'var(--primary)';
-      trail!.style.background = 'rgba(0, 240, 255, 0.03)';
+      trail!.style.background = 'var(--primary-dim)';
+      dot!.style.transform = 'translate(-50%, -50%) scale(1)';
     }
 
     for (const el of Array.from(hoverEls)) {

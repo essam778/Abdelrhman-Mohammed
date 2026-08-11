@@ -64,21 +64,24 @@ export default function Navbar() {
   return (
     <>
       <nav id="navbar" className="navbar" aria-label="Main navigation">
-      <div className="nav-inner">
-        <a
-          href="#hero"
-          className="nav-logo"
-          aria-label="Go to top - Abdulrahman Mohamed Portfolio"
-          onClick={(e) => { e.preventDefault(); lazyScroll('#hero'); }}
-          style={{ fontFamily: 'var(--font-mono)', fontSize: 15, fontWeight: 500, display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}
-        >
-          <span style={{ color: 'var(--text-muted)', fontWeight: 300 }}>&lt;</span>
-          <span style={{ background: 'var(--gradient-1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 700 }}>{t('hero.name.first')}</span>
-          <span style={{ color: 'var(--text-muted)', fontWeight: 300 }}>/&gt;</span>
-        </a>
+      <div className="nav-inner" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '76px' }}>
+        
+        {/* LEFT: Logo */}
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
+          <a
+            href="#hero"
+            className="nav-logo"
+            aria-label="Go to top"
+            onClick={(e) => { e.preventDefault(); lazyScroll('#hero'); }}
+            style={{ textDecoration: 'none' }}
+          >
+            <span className="font-display neon" style={{ fontSize: '1.4rem', fontWeight: 400, letterSpacing: '1px' }}>{t('hero.name.first')}</span>
+          </a>
+        </div>
 
-        <div className="nav-links nav-links-desktop" style={{ display: 'flex', gap: 32 }}>
-          {links.map((link) => (
+        {/* CENTER: Links */}
+        <div className="nav-links nav-links-desktop" style={{ flex: 2, display: 'flex', justifyContent: 'center', gap: 40 }}>
+          {links.map((link, i) => (
             <a
               key={link.key}
               href={link.href}
@@ -88,12 +91,16 @@ export default function Navbar() {
                 lazyScroll(link.href);
               }}
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 12,
-                letterSpacing: '1.5px',
+                fontFamily: 'var(--font-sans)',
+                fontSize: 14,
+                fontWeight: 700,
+                letterSpacing: '1px',
                 textTransform: 'uppercase',
-                color: 'var(--text-muted)',
+                color: 'var(--text)',
                 textDecoration: 'none',
+                animation: `fade-down 0.5s ${i * 0.1}s ease forwards`,
+                opacity: 0,
+                transform: 'translateY(-10px)'
               }}
             >
               {t(link.key)}
@@ -101,55 +108,33 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="nav-controls" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div className="nav-badge" style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '1.5px',
-            textTransform: 'uppercase', color: 'var(--primary)',
-            padding: '6px 14px', border: '1px solid rgba(0,240,255,0.2)',
-            borderRadius: 100,
-          }}>
-            <span style={{
-              width: 6, height: 6, background: 'var(--primary)',
-              borderRadius: '50%', animation: 'pulse-dot 2s ease-in-out infinite',
-            }} />
-            <span>{t('nav.available')}</span>
-          </div>
-
-          <button
-            onClick={toggleTheme}
-            className="ctrl-btn"
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            style={{
-              width: 36, height: 36, borderRadius: 8,
-              border: '1px solid var(--border)', background: 'transparent',
-              color: 'var(--text-secondary)', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
-          >
-            {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
-          </button>
-
+        {/* RIGHT: Controls */}
+        <div className="nav-controls" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 16 }}>
           <button
             onClick={toggleLang}
-            className="ctrl-btn"
+            className="ctrl-btn desktop-lang"
             aria-label={lang === 'en' ? 'Switch to Arabic language' : 'Switch to English language'}
             style={{
-              height: 36, borderRadius: 8, padding: '0 10px',
-              border: '1px solid var(--border)', background: 'transparent',
+              background: 'transparent', border: 'none',
               color: 'var(--text-secondary)', cursor: 'pointer',
-              fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600,
+              fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 700,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'all 0.2s',
+              transition: 'color 0.2s',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--secondary)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
           >
             {lang === 'en' ? 'AR' : 'EN'}
           </button>
+
+          <a
+            href="#contact"
+            className="btn-primary desktop-cta"
+            onClick={(e) => { e.preventDefault(); lazyScroll('#contact'); }}
+            style={{ padding: '10px 24px', fontSize: 13 }}
+          >
+            {t('nav.contact')}
+          </a>
 
           {/* Hamburger button */}
           <button
@@ -160,10 +145,10 @@ export default function Navbar() {
             aria-controls="mobile-menu"
             style={{
               width: 36, height: 36, borderRadius: 8,
-              border: '1px solid var(--border)', background: 'transparent',
+              border: '2px solid var(--border)', background: 'transparent',
               color: 'var(--text-secondary)', cursor: 'pointer',
               display: 'none', alignItems: 'center', justifyContent: 'center',
-              transition: 'all 0.2s',
+              transition: 'var(--transition-fast)',
             }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
@@ -177,10 +162,7 @@ export default function Navbar() {
           display: none !important;
         }
         @media (max-width: 768px) {
-          .nav-links-desktop {
-            display: none !important;
-          }
-          .nav-badge {
+          .nav-links-desktop, .desktop-cta, .desktop-lang {
             display: none !important;
           }
           .hamburger-btn {
@@ -215,7 +197,7 @@ export default function Navbar() {
           style={{
             position: 'absolute', top: 20, right: 20,
             width: 44, height: 44, borderRadius: 12,
-            border: '1px solid var(--border)', background: 'var(--surface)',
+            border: '2px solid var(--border)', background: 'var(--surface)',
             color: 'var(--text)', cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             transition: 'all 0.2s',
@@ -224,6 +206,24 @@ export default function Navbar() {
           onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text)'; }}
         >
           <X size={22} />
+        </button>
+
+        {/* Mobile Language Switch */}
+        <button
+          onClick={() => { toggleLang(); setMenuOpen(false); }}
+          style={{
+            background: 'var(--primary-dim)', border: '2px solid var(--primary)',
+            color: 'var(--primary)', cursor: 'pointer', borderRadius: 100, padding: '8px 32px',
+            fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 700,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'all 0.4s ease',
+            opacity: menuOpen ? 1 : 0,
+            transform: menuOpen ? 'translateY(0)' : 'translateY(24px)',
+            transitionDelay: '0.05s',
+            marginBottom: 20
+          }}
+        >
+          {lang === 'en' ? 'ARABIC (AR)' : 'ENGLISH (EN)'}
         </button>
 
         {links.map((link, i) => (

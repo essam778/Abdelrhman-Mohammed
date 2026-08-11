@@ -138,7 +138,7 @@ export default function Skills() {
                   gap: 8,
                   padding: '8px 18px',
                   background: 'var(--surface)',
-                  border: '1px solid var(--border)',
+                  border: '2px solid var(--border)',
                   borderRadius: 100,
                   fontFamily: 'var(--font-mono)',
                   fontSize: 12,
@@ -183,7 +183,7 @@ export default function Skills() {
               className="skill-category"
               style={{
                 background: 'var(--surface)',
-                border: '1px solid var(--border)',
+                border: '2px solid var(--border)',
                 borderRadius: 'var(--radius)',
                 padding: 28,
                 transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease',

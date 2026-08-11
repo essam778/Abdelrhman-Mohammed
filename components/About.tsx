@@ -173,7 +173,7 @@ export default function About() {
               gap: 1,
               borderRadius: 'var(--radius)',
               overflow: 'hidden',
-              border: '1px solid var(--border)',
+              border: '2px solid var(--border)',
               background: 'var(--border)',
             }}
           >
@@ -220,7 +220,7 @@ fontSize: 32,
               display: 'flex', flexDirection: 'column', gap: 1,
               borderRadius: 'var(--radius)',
               overflow: 'hidden',
-              border: '1px solid var(--border)',
+              border: '2px solid var(--border)',
               background: 'var(--border)',
             }}
           >
@@ -261,7 +261,7 @@ fontSize: 32,
           style={{
             borderRadius: 'var(--radius)',
             overflow: 'hidden',
-            border: '1px solid var(--border)',
+            border: '2px solid var(--border)',
             background: 'var(--surface)',
             fontFamily: 'var(--font-mono)',
             fontSize: 14,
@@ -276,7 +276,7 @@ fontSize: 32,
           <div style={{
             display: 'flex', alignItems: 'center', gap: 8,
             padding: '14px 20px',
-            borderBottom: '1px solid var(--border)',
+            borderBottom: '2px solid var(--border)',
             background: 'var(--bg)',
           }}>
             <span style={{
