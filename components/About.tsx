@@ -132,7 +132,7 @@ export default function About() {
         }}
       >
         {/* ===== Left Column ===== */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 48, minWidth: 0 }}>
           <h2 style={{
             fontSize: 'clamp(30px, 4.5vw, 48px)', fontWeight: 800,
             lineHeight: 1.1, letterSpacing: -2, color: 'var(--text)',
@@ -205,10 +205,10 @@ export default function About() {
                 }}>
                   {t(d.labelKey)}
                 </span>
-                <span style={{
+                <span className="info-value" style={{
                   fontFamily: 'var(--font-sans)', fontSize: 15,
                   color: 'var(--text)', fontWeight: 500,
-                  flex: 1, textAlign: 'right',
+                  flex: 1, textAlign: 'right', wordBreak: 'break-word', overflowWrap: 'anywhere'
                 }}>
                   {d.valueKey ? t(d.valueKey) : d.value}
                 </span>
@@ -349,6 +349,28 @@ export default function About() {
           }
           .about-stats {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .info-row {
+            padding: 16px !important;
+            gap: 6px 12px !important;
+            flex-wrap: wrap !important;
+          }
+          .info-row > span:nth-child(3) { /* Label */
+            font-size: 12px !important;
+            min-width: auto !important;
+            flex: 1 !important;
+            text-align: start !important;
+          }
+          .info-value {
+            font-size: 14px !important;
+            text-align: start !important;
+            word-break: normal !important;
+            overflow-wrap: anywhere !important;
+            flex-basis: 100% !important;
+            padding-inline-start: 44px !important;
+            margin-top: 0 !important;
           }
         }
       `}</style>

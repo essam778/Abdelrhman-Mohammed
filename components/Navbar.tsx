@@ -257,6 +257,33 @@ export default function Navbar() {
             {t(link.key)}
           </a>
         ))}
+
+        {/* Mobile Contact Link */}
+        <a
+          href="#contact"
+          className="nav-link"
+          onClick={(e) => {
+            e.preventDefault();
+            setMenuOpen(false);
+            setTimeout(() => {
+              startTransition('#contact');
+            }, 300);
+          }}
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 'clamp(22px, 5vw, 30px)',
+            letterSpacing: '3px',
+            textTransform: 'uppercase',
+            color: 'var(--primary)',
+            textDecoration: 'none',
+            transition: 'color 0.2s, opacity 0.4s ease, transform 0.4s ease',
+            opacity: menuOpen ? 1 : 0,
+            transform: menuOpen ? 'translateY(0)' : 'translateY(24px)',
+            transitionDelay: `${links.length * 0.08}s`,
+          }}
+        >
+          {t('nav.contact')}
+        </a>
       </div>
 
     </>
