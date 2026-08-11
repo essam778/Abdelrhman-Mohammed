@@ -218,12 +218,24 @@ export default function Projects() {
           width: '100%',
         }}
       >
-        <div className="section-label">
-          <span className="label-num">03</span>
-          <span>{t('projects.label')}</span>
+        <div
+          className="reveal"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 24,
+            fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 6vw, 72px)',
+            textTransform: 'uppercase', color: 'var(--text)',
+            marginBottom: 64,
+            lineHeight: 1,
+          }}
+        >
+          <span style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)', fontSize: '0.4em', alignSelf: 'flex-start', marginTop: '10px' }}>03</span>
+          <h2>{t('projects.label')}</h2>
+          <span style={{
+            flex: 1, height: 2,
+            background: 'linear-gradient(90deg, var(--primary), transparent)',
+          }} />
         </div>
 
-        <h2 className="section-title">{t('projects.title')}</h2>
         <p className="section-sub">{t('projects.sub')}</p>
 
         <div

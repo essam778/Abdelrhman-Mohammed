@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSectionTransition } from '@/components/SectionTransition';
 
 const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -29,6 +30,7 @@ function lazyScroll(targetId: string) {
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const { lang, toggleLang, t } = useLanguage();
+  const { startTransition } = useSectionTransition();
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -58,7 +60,6 @@ export default function Navbar() {
     { key: 'nav.skills', href: '#skills' },
     { key: 'nav.work', href: '#projects' },
     { key: 'nav.experience', href: '#experience' },
-    { key: 'nav.contact', href: '#contact' },
   ];
 
   return (
@@ -72,7 +73,7 @@ export default function Navbar() {
             href="#hero"
             className="nav-logo"
             aria-label="Go to top"
-            onClick={(e) => { e.preventDefault(); lazyScroll('#hero'); }}
+            onClick={(e) => { e.preventDefault(); startTransition('#hero'); }}
             style={{ textDecoration: 'none' }}
           >
             <span className="font-display neon" style={{ fontSize: '1.4rem', fontWeight: 400, letterSpacing: '1px' }}>{t('hero.name.first')}</span>
@@ -88,7 +89,7 @@ export default function Navbar() {
               className="nav-link"
               onClick={(e) => {
                 e.preventDefault();
-                lazyScroll(link.href);
+                startTransition(link.href);
               }}
               style={{
                 fontFamily: 'var(--font-sans)',
@@ -130,7 +131,7 @@ export default function Navbar() {
           <a
             href="#contact"
             className="btn-primary desktop-cta"
-            onClick={(e) => { e.preventDefault(); lazyScroll('#contact'); }}
+            onClick={(e) => { e.preventDefault(); startTransition('#contact'); }}
             style={{ padding: '10px 24px', fontSize: 13 }}
           >
             {t('nav.contact')}
@@ -235,7 +236,7 @@ export default function Navbar() {
               e.preventDefault();
               setMenuOpen(false);
               setTimeout(() => {
-                lazyScroll(link.href);
+                startTransition(link.href);
               }, 300);
             }}
             style={{

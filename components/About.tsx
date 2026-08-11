@@ -106,21 +106,18 @@ export default function About() {
       <div
         className="reveal"
         style={{
-          display: 'flex', alignItems: 'center', gap: 14,
-          fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '2px',
-          textTransform: 'uppercase', color: 'var(--primary)',
-          marginBottom: 48,
+          display: 'flex', alignItems: 'center', gap: 24,
+          fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 6vw, 72px)',
+          textTransform: 'uppercase', color: 'var(--text)',
+          marginBottom: 64,
+          lineHeight: 1,
         }}
       >
+        <span style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)', fontSize: '0.4em', alignSelf: 'flex-start', marginTop: '10px' }}>01</span>
+        <h2>{t('about.label')}</h2>
         <span style={{
-          width: 8, height: 8, borderRadius: '50%',
-          background: 'var(--primary)', boxShadow: '0 0 12px var(--primary)',
-          flexShrink: 0,
-        }} />
-        <span>01 — {t('about.label')}</span>
-        <span style={{
-          flex: 1, height: 1,
-          background: 'linear-gradient(90deg, var(--border), transparent)',
+          flex: 1, height: 2,
+          background: 'linear-gradient(90deg, var(--primary), transparent)',
         }} />
       </div>
 
@@ -164,54 +161,7 @@ export default function About() {
             </p>
           </div>
 
-          {/* Stats Grid */}
-          <div
-            className="reveal about-stats"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: 1,
-              borderRadius: 'var(--radius)',
-              overflow: 'hidden',
-              border: '2px solid var(--border)',
-              background: 'var(--border)',
-            }}
-          >
-            {profile.stats.map((stat, i) => (
-              <div
-                key={i}
-                style={{
-                  background: 'var(--surface)',
-                  padding: '24px 16px',
-                  textAlign: 'center',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 8,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span style={{
-fontSize: 32,
-                      fontWeight: 800,
-                  fontFamily: 'var(--font-mono)',
-                  background: 'var(--gradient-1)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  lineHeight: 1,
-                }}>
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                </span>
-                <span style={{
-                  fontSize: 12, fontFamily: 'var(--font-mono)',
-                  letterSpacing: '0.5px', color: 'var(--text-muted)',
-                  textTransform: 'uppercase',
-                }}>
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
+
 
           {/* Details List */}
           <div

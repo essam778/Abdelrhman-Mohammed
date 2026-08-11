@@ -45,14 +45,25 @@ export default function Contact() {
   return (
     <section id="contact" style={{ padding: '120px 24px', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
-        <div className="section-label" style={{ justifyContent: 'center' }}>
-          <span className="label-num">05</span>
-          <span>{t('contact.label')}</span>
+        <div
+          className="reveal"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 24,
+            fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 6vw, 72px)',
+            textTransform: 'uppercase', color: 'var(--text)',
+            marginBottom: 64,
+            lineHeight: 1,
+            justifyContent: 'center',
+          }}
+        >
+          <span style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)', fontSize: '0.4em', alignSelf: 'flex-start', marginTop: '10px' }}>05</span>
+          <h2>{t('contact.label')}</h2>
+          <span style={{
+            flex: 1, height: 2,
+            background: 'linear-gradient(90deg, var(--primary), transparent)',
+            maxWidth: 100,
+          }} />
         </div>
-
-        <h2 className="section-title" style={{ fontSize: 'clamp(36px, 5.5vw, 52px)' }}>
-          <span dangerouslySetInnerHTML={{ __html: t('contact.title') }} />
-        </h2>
 
         <p style={{ fontFamily: 'var(--font-sans)', fontSize: 17, color: 'var(--text-secondary)', lineHeight: 1.8, marginTop: 16, transitionDelay: '.1s', maxWidth: 500, margin: '16px auto 0' }}>
           {t('contact.sub')}

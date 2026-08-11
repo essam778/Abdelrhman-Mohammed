@@ -57,26 +57,7 @@ export default function Hero() {
         position: 'relative', zIndex: 3, maxWidth: 680, flex: 1,
         paddingRight: 20,
       }}>
-        <div className="font-mono" style={{
-          display: 'inline-flex', alignItems: 'center', gap: 12,
-          fontSize: 13, letterSpacing: '3px',
-          textTransform: 'uppercase', color: 'var(--text)',
-          marginBottom: 24,
-          animation: 'fade-up 0.8s ease forwards', opacity: 0,
-        }}>
-          <span style={{ color: 'var(--primary)', fontWeight: 800 }}>{'//'}</span>
-          <span style={{ textShadow: '0 0 12px var(--primary-glow)', fontWeight: 600 }}>{t('hero.badge')}</span>
-        </div>
 
-        <div style={{
-fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
-           marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8,
-          animation: 'fade-up 0.8s 0.1s ease forwards', opacity: 0,
-        }}>
-          <span style={{ color: 'var(--primary)', fontWeight: 700 }}>$</span>
-          <span ref={terminalRef} style={{ color: 'var(--text-secondary)' }} />
-          <span style={{ color: 'var(--primary)', animation: 'blink 1s step-end infinite' }}>|</span>
-        </div>
 
         <h1 style={{ marginBottom: 16, animation: 'fade-up 0.8s 0.2s ease forwards', opacity: 0 }}>
           <span className="font-display neon" style={{
@@ -97,8 +78,8 @@ fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
         </h1>
 
         <p style={{
-          fontFamily: 'var(--font-mono)', fontSize: 14,
-          color: 'var(--text-secondary)', lineHeight: 1.8, maxWidth: 520,
+          fontFamily: 'var(--font-mono)', fontSize: 18,
+          color: 'var(--text-secondary)', lineHeight: 1.8, maxWidth: 580,
           marginBottom: 36,
           animation: 'fade-up 0.8s 0.3s ease forwards', opacity: 0,
         }}>
@@ -163,42 +144,10 @@ fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--text-muted)',
               </div>
             </div>
           </div>
-          {/* Status pill */}
-          <div style={{
-            position: 'absolute', top: -16, right: -16,
-            display: 'flex', alignItems: 'center', gap: 6,
-            background: 'var(--secondary)', color: 'var(--bg)',
-            border: '2px solid var(--border)', borderRadius: 100, padding: '8px 16px',
-            fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700,
-            letterSpacing: '1px', whiteSpace: 'nowrap', zIndex: 3,
-            boxShadow: '4px 4px 0px rgba(0,0,0,0.4)',
-            transform: 'rotate(5deg)'
-          }}>
-            {t('hero.photo.status')}
-          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="scroll-indicator"
-        role="presentation"
-        aria-hidden="true"
-        style={{
-          position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-          fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 2,
-          textTransform: 'uppercase', color: 'var(--text-muted)', zIndex: 3,
-          animation: 'fade-up 0.8s 0.8s ease forwards', opacity: 0,
-        }}
-      >
-        <span>{t('hero.scroll')}</span>
-        <div style={{
-          width: 1, height: 24,
-          background: 'linear-gradient(180deg, var(--text-muted), transparent)',
-          animation: 'scroll-bounce 2s ease-in-out infinite',
-        }} />
-      </div>
+
 
       <style jsx>{`
         @media (max-width: 1024px) {

@@ -104,12 +104,23 @@ export default function Skills() {
 
   return (
     <section id="skills">
-      <div className="section-label">
-        <span className="label-num">02</span>
-        <span>{t('skills.label')}</span>
+      <div
+        className="reveal"
+        style={{
+          display: 'flex', alignItems: 'center', gap: 24,
+          fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 6vw, 72px)',
+          textTransform: 'uppercase', color: 'var(--text)',
+          marginBottom: 64,
+          lineHeight: 1,
+        }}
+      >
+        <span style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)', fontSize: '0.4em', alignSelf: 'flex-start', marginTop: '10px' }}>02</span>
+        <h2>{t('skills.label')}</h2>
+        <span style={{
+          flex: 1, height: 2,
+          background: 'linear-gradient(90deg, var(--primary), transparent)',
+        }} />
       </div>
-
-      <h2 className="section-title">{t('skills.title')}</h2>
 
       {/* Marquee bar */}
       <div style={{ overflow: 'hidden', width: '100%', marginBottom: 56 }}>

@@ -45,13 +45,23 @@ export default function Experience() {
 
   return (
     <section id="experience" ref={sectionRef}>
-      <div className="section-label reveal">
-        <span className="label-num">04 —</span> {t('nav.experience')}
+      <div
+        className="reveal"
+        style={{
+          display: 'flex', alignItems: 'center', gap: 24,
+          fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 6vw, 72px)',
+          textTransform: 'uppercase', color: 'var(--text)',
+          marginBottom: 64,
+          lineHeight: 1,
+        }}
+      >
+        <span style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)', fontSize: '0.4em', alignSelf: 'flex-start', marginTop: '10px' }}>04</span>
+        <h2>{t('nav.experience')}</h2>
+        <span style={{
+          flex: 1, height: 2,
+          background: 'linear-gradient(90deg, var(--primary), transparent)',
+        }} />
       </div>
-
-      <h2 className="section-title reveal" style={{ marginBottom: 48 }}>
-        {t('experience.title')}
-      </h2>
 
       <div className="exp-grid" style={{
         display: 'grid',
