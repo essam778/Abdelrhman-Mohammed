@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSectionTransition } from '@/components/SectionTransition';
 
 const phrases = [
   'whoami = "AI Engineer"',
@@ -16,6 +17,7 @@ const phrases = [
 
 export default function Hero() {
   const { t } = useLanguage();
+  const { startTransition } = useSectionTransition();
   const terminalRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -98,15 +100,14 @@ export default function Hero() {
           {t('hero.sub')}
         </p>
 
-        <div style={{
-          display: 'flex', gap: 14, flexWrap: 'wrap',
+        <div className="hero-buttons" style={{
           animation: 'fade-up 0.8s 0.4s ease forwards', opacity: 0,
         }}>
           <a
             href="#projects"
             className="hero-btn-primary"
             aria-label="View my work and projects"
-            onClick={(e) => { e.preventDefault(); const t = document.querySelector('#projects'); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top: y, behavior: 'smooth' }); } }}
+            onClick={(e) => { e.preventDefault(); startTransition('#projects'); }}
           >
             <span>{t('hero.viewWork')}</span>
             <ArrowRight size={16} />
@@ -115,7 +116,7 @@ export default function Hero() {
             href="#contact"
             className="hero-btn-secondary"
             aria-label="Contact me"
-            onClick={(e) => { e.preventDefault(); const t = document.querySelector('#contact'); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top: y, behavior: 'smooth' }); } }}
+            onClick={(e) => { e.preventDefault(); startTransition('#contact'); }}
           >
             <span>{t('hero.letsTalk')}</span>
           </a>
@@ -197,6 +198,11 @@ export default function Hero() {
 
 
       <style jsx>{`
+        .hero-buttons {
+          display: flex;
+          gap: 14px;
+          flex-wrap: wrap;
+        }
         .hero-btn-primary {
           display: inline-flex; align-items: center; gap: 8px;
           padding: 14px 32px;
@@ -291,7 +297,7 @@ export default function Hero() {
           #hero-content {
             align-items: center;
             padding-right: 0 !important;
-            margin-bottom: 40px;
+            margin-bottom: 90px;
           }
           #hero-content p {
             margin: 0 auto 36px auto;
@@ -299,8 +305,21 @@ export default function Hero() {
           #hero-content .font-mono {
             justify-content: center;
           }
-          #hero-content div[style*="gap: 14"] {
+          .hero-buttons {
             justify-content: center;
+          }
+          @media (max-width: 600px) {
+            .hero-buttons {
+              flex-wrap: nowrap;
+              gap: 10px;
+              width: 100%;
+            }
+            .hero-btn-primary, .hero-btn-secondary {
+              padding: 12px 14px !important;
+              font-size: 12px !important;
+              flex: 1;
+              justify-content: center;
+            }
           }
           .scroll-indicator {
             display: none !important;

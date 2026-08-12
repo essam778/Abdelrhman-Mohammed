@@ -116,69 +116,7 @@ export const SectionTransitionProvider: React.FC<{ children: React.ReactNode }> 
   };
 
   useEffect(() => {
-    let touchStartY = 0;
-
-    const handleWheel = (e: WheelEvent) => {
-      if (isTransitioning.current) return;
-      
-      const currentIndex = SECTIONS.indexOf(activeSectionId);
-      
-      // Check boundaries
-      const isAtTop = window.scrollY <= 0;
-      const isAtBottom = Math.ceil(window.scrollY + window.innerHeight) >= document.body.scrollHeight;
-
-      if (e.deltaY > 0 && isAtBottom) { // Scrolling down at bottom
-        e.preventDefault(); 
-        if (currentIndex < SECTIONS.length - 1) {
-          startTransition(SECTIONS[currentIndex + 1]);
-        }
-      } else if (e.deltaY < 0 && isAtTop) { // Scrolling up at top
-        e.preventDefault(); 
-        if (currentIndex > 0) {
-          startTransition(SECTIONS[currentIndex - 1]);
-        }
-      }
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
-    
-    const handleTouchMove = (e: TouchEvent) => {
-      if (isTransitioning.current) return;
-      
-      const currentIndex = SECTIONS.indexOf(activeSectionId);
-      
-      const isAtTop = window.scrollY <= 0;
-      const isAtBottom = Math.ceil(window.scrollY + window.innerHeight) >= document.body.scrollHeight;
-
-      const touchEndY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchEndY;
-      
-      if (deltaY > 50 && isAtBottom) {
-        e.preventDefault();
-        if (currentIndex < SECTIONS.length - 1) {
-          touchStartY = touchEndY; 
-          startTransition(SECTIONS[currentIndex + 1]);
-        }
-      } else if (deltaY < -50 && isAtTop) {
-        e.preventDefault();
-        if (currentIndex > 0) {
-          touchStartY = touchEndY; 
-          startTransition(SECTIONS[currentIndex - 1]);
-        }
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-    };
+    // Scroll handling removed to only allow transition via Navbar/Buttons
   }, [activeSectionId]);
 
   return (

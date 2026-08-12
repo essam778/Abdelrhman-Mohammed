@@ -60,6 +60,7 @@ export default function Navbar() {
     { key: 'nav.skills', href: '#skills' },
     { key: 'nav.work', href: '#projects' },
     { key: 'nav.experience', href: '#experience' },
+    { key: 'nav.contact', href: '#contact' },
   ];
 
   return (
@@ -113,29 +114,23 @@ export default function Navbar() {
         <div className="nav-controls" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 16 }}>
           <button
             onClick={toggleLang}
-            className="ctrl-btn desktop-lang"
+            className="desktop-lang"
             aria-label={lang === 'en' ? 'Switch to Arabic language' : 'Switch to English language'}
             style={{
-              background: 'transparent', border: 'none',
-              color: 'var(--text-secondary)', cursor: 'pointer',
-              fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 700,
+              background: 'linear-gradient(135deg, var(--primary), var(--secondary))', border: 'none',
+              color: '#fff', cursor: 'pointer',
+              fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 800,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'color 0.2s',
+              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
+              padding: '12px 28px', borderRadius: '9999px',
+              letterSpacing: '1px',
+              boxShadow: '0 4px 15px rgba(244, 85, 73, 0.2)',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--secondary)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(244, 85, 73, 0.4)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(244, 85, 73, 0.2)'; }}
           >
-            {lang === 'en' ? 'AR' : 'EN'}
+            {lang === 'en' ? 'عربي' : 'EN'}
           </button>
-
-          <a
-            href="#contact"
-            className="btn-primary desktop-cta"
-            onClick={(e) => { e.preventDefault(); startTransition('#contact'); }}
-            style={{ padding: '10px 24px', fontSize: 13 }}
-          >
-            {t('nav.contact')}
-          </a>
 
           {/* Hamburger button */}
           <button
@@ -258,32 +253,7 @@ export default function Navbar() {
           </a>
         ))}
 
-        {/* Mobile Contact Link */}
-        <a
-          href="#contact"
-          className="nav-link"
-          onClick={(e) => {
-            e.preventDefault();
-            setMenuOpen(false);
-            setTimeout(() => {
-              startTransition('#contact');
-            }, 300);
-          }}
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(22px, 5vw, 30px)',
-            letterSpacing: '3px',
-            textTransform: 'uppercase',
-            color: 'var(--primary)',
-            textDecoration: 'none',
-            transition: 'color 0.2s, opacity 0.4s ease, transform 0.4s ease',
-            opacity: menuOpen ? 1 : 0,
-            transform: menuOpen ? 'translateY(0)' : 'translateY(24px)',
-            transitionDelay: `${links.length * 0.08}s`,
-          }}
-        >
-          {t('nav.contact')}
-        </a>
+        {/* Mobile Contact Link Removed since it's now in main links */}
       </div>
 
     </>

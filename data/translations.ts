@@ -46,6 +46,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     'contact.label': 'Contact',
     'contact.title': "Let's Build<br>Something Great",
     'contact.sub': "Open to internships, entry-level AI/ML roles, and collaboration. Let's connect.",
+    'contact.tooltip.copy': 'Click to copy',
+    'contact.tooltip.copied': 'Copied!',
     'footer.tag': 'AI Engineer · Data Scientist · Builder',
     'footer.location': 'Benha, Egypt',
     // Experience items
@@ -166,6 +168,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     'contact.label': 'تواصل',
     'contact.title': 'لنبني شيئاً<br>عظيماً',
     'contact.sub': 'متاح للتدريب ووظائف AI/ML المبتدئة والتعاون. دعنا نتواصل.',
+    'contact.tooltip.copy': 'انقر للنسخ',
+    'contact.tooltip.copied': 'تم النسخ!',
     'footer.tag': 'مهندس ذكاء اصطناعي · عالم بيانات · باني',
     'footer.location': 'بنها، مصر',
     // Experience items - Arabic

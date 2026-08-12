@@ -139,9 +139,9 @@ export default function Contact() {
             }}>
               {copied ? (
                 <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <Check size={14} /> Copied!
+                  <Check size={14} /> {t('contact.tooltip.copied')}
                 </span>
-              ) : 'Click to copy'}
+              ) : t('contact.tooltip.copy')}
             </div>
           </div>
 

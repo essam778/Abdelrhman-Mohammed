@@ -153,6 +153,7 @@ body::after {
 }
 .navbar.scrolled {
   background: rgba(15, 34, 41, 0.85);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
   backdrop-filter: blur(24px) saturate(1.2);
   border-bottom: 2px solid var(--secondary);
   padding: 8px 48px;
@@ -377,8 +378,6 @@ section {
 [dir='rtl'] .section-label::after {
   background: linear-gradient(270deg, var(--primary), transparent);
 }
-[dir='rtl'] .nav-links-desktop { flex-direction: row-reverse; }
-[dir='rtl'] .nav-controls { flex-direction: row-reverse; }
 
 /* Responsive */
 @media (max-width: 1150px) {
